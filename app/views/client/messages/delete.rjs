@@ -1,0 +1,35 @@
+id_suffix = params[:idSuffix]
+if id_suffix.nil?
+  logger.error "params[:idSuffix] is nil."
+  page.call "AppMessage.showError", h("A system error has occurred. Please try again later.")
+  return
+end
+
+message = ClientMessage.find_by_id(params[:id])
+
+unless message.nil?
+  # Only the owner can delete her messages
+  if message.sender == current_account
+    message.destroy
+
+    page.visual_effect :fade, "message#{params[:id]}", {:duration => 1}
+    # Without calling delay(), the fading effect won't be effective as the element has already
+    # been removed.
+    page.delay(1) do
+      page.remove "message#{params[:id]}"
+
+      condition = Array.new
+      condition = ["client_request_id = ?", message.client_request.id] unless message.client_request.nil?
+      if ClientMessage.count(:conditions => condition) == 0
+        page["newMessageLink#{id_suffix}"].show()
+        page["noMessageText#{id_suffix}"].show()
+      end
+    end
+  else
+    page.call "AppMessage.showError", h("You're not allowed to delete <Message id:#{message.id}>")
+  end
+else
+  # Show an error message and remove the invalid message from the view
+  page.call "AppMessage.showError", h("<Message id:#{params[:id]}> does not exist.")
+  page.call "Message.afterDestroyFails", "message#{params[:id]}"
+end

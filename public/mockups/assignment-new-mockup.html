@@ -1,0 +1,150 @@
+
+
+
+['NEW' VIEW]
+<br/><br/><br/><br/>
+
+
+
+
+<style>
+
+h3 {
+ font-family: helvetica;
+}
+input.assignment-input, textarea, select {
+ border: 1px solid #809FFF;
+ padding: 2px;
+ font-family: helvetica;
+ font-size: 10pt;
+}
+.assignment-new {
+ padding: 9px;
+ border-top: 1px dotted #bbb;
+ padding-right: 0;
+}
+.subtask-header {
+ padding: 6px;
+ border: 1px dotted #bbb;
+ background-color: #eee;
+ float: right;
+ font-size: 14pt;
+ font-weight: bold;
+ font-family: helvetica;
+}
+div.assignment-new-desc {
+ background-color: #eee;
+ padding: 8px;
+ color: #00248F;
+}
+div.assignment-new-date {
+ float: right;
+ background-color:  #809FFF;
+ padding: 9px;
+ padding-right: 30%;
+ font-size: 10pt;
+}
+div.assignment-new-hours {
+}
+input.assignment-new-hours {
+ font-size: 14pt;
+ border: 1px solid #00248F;
+}
+div.assignment-new-who {
+ float: right;
+ color: #00248F;
+ padding: 9px;
+ padding-right: 5%;
+ font-size: 10pt;
+}
+div.assignment-new-project {
+ padding-top: 30px;
+ color: #00248F;
+}
+div.assignment-new-all {
+ margin: 8px;
+ font-family: helvetica;
+}
+
+</style>
+
+
+<div class="subtask-header">
+ Add New Assignment
+</div>
+<div class="assignment-new">
+ <div class="assignment-new-title assignment-new-all">
+  Title <br/>
+  <input class="assignment-input" type="input" size="62" value="New Assignment.."/>	
+ </div>
+ <div class="assignment-new-desc assignment-new-all" style="margin-right: 0">
+	 <div class="assignment-new-who assignment-new-all" style="margin-top: 0; margin-right: 0;">
+	  <ul style="list-style: none;  margin: 3px">
+	   <li style="margin: 2px">
+	    <select style="border: 1px solid #555;">
+		 <option> WHO? </option>
+		 <option> John </option>
+		 <option> Binh </option>	
+	    </select>
+	  &nbsp;<a style="font-size: 9pt" href="#">More..</a>
+	   </li>
+	   <!-- adding new -->
+	   <li style="margin: 2px">
+	    <select style="border: 1px solid #555;">
+		 <option> WHO? </option>
+		 <option> John </option>
+		 <option> Binh </option>	
+	    </select>
+	   </li>
+	   <!-- end adding new -->
+	  </ul>
+	 </div>
+  Description <br/>
+  <textarea rows="5" cols="60">This should use redcloth or some kind of markdown..
+  </textarea>	
+ </div>	
+ <div class="assignment-new-date assignment-new-all" style="margin-top: 0; margin-right: 0">
+  <span style="background-color: #2f2; padding: 2px;">Start</span> 
+  <input class="assignment-input" type="input" style="border: 1px solid #555;" size="10" value="10/10/2007"/> &nbsp;&nbsp;&nbsp;
+  <span style="background-color: #f22; padding: 2px">End</span> 
+  <input class="assignment-input" type="input" style="border: 1px solid #555;" size="10" value="10/15/2007"/>
+ </div>
+ <div class="assignment-new-hours assignment-new-all">
+  Hours <br/>
+  <input class="assignment-input" type="input" class="assignment-new-hours" size="5" value="0"/>	
+ </div>
+ <div style="padding: 5px; margin-top: 20px; border-top: 1px solid #eee">
+  <input type="submit" value="Add"/>
+ </div>
+ <div class="assignment-new-all assignment-new-project">
+  Project <br/>
+  <select style="border: 1px solid #555;">
+	 <option> NONE </option>
+	 <option> Some Project </option>
+	 <option> Another Project Name </option>	
+  </select>
+ </div>
+ <div class="assignment-new-all">
+  <div style="padding: 8px; font-size: 10pt; color: #000">
+  <input class="assignment-input" type="checkbox" checked="true"/> Application Must Make Coffee..<br/>
+  <input class="assignment-input" type="checkbox"/> Some other thing it Must do..<br/>
+  <input class="assignment-input" type="checkbox"/> Et cetera et cetera..<br/>
+  <input class="assignment-input" type="checkbox"/> Application Must Make Coffee..<br/>
+  <input class="assignment-input" type="checkbox"/> Application Must Make Coffee..<br/><br/>
+  <!--a href="#">Next</a-->
+  </div>
+ </div>
+
+<div style="clear: both">
+</div>
+</div>
+	
+	
+	<h2>[NOTES]</h2>
+	1. Dates should be date pickers [calendar_helper]<br/>
+	2. Assign to [WHO] should be an AJAX add to allow for dynamic adding of assignees<br/>
+	3. Project drop down displays all projects that the users has access to - a selected project displays its client_requests with checkbox to select one or more client_request that this assignment address. [We might have to address a paging solution in the future to deal with a lot of client_requests]<br/>
+	   
+
+
+

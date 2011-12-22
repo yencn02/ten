@@ -1,0 +1,17 @@
+<h3 id="reqTitle"><%= h client_request.title -%></h3>
+<%= client_request.created_at.strftime("%b %d") %>
+(<%= time_ago_in_words(client_request.created_at) -%>&nbsp;ago)
+
+<%= client_request.description %>
+<p>
+<%= form_for :client_request, client_request, :url => {:action => "update_state_and_priority"} do |f| %>
+    <%= f.label :priority, 'Priority:'%>
+    <%= f.select :priority, ClientRequest::get_priority_list %> <br/>
+    <%= f.label :status, 'State:  '%>
+    <%= f.select :status, ClientRequest::STATUS %> &nbsp; &nbsp;
+    <%= hidden_field_tag :id, client_request.id %>
+    <%= f.submit 'Update'%>
+<% end %>  
+  Completed <%= client_request.total_billed_hours -%> hours of <%= client_request.total_estimated_hours -%> hours estimated <br/>
+  Milestone: <%= h client_request.milestone.title -%> <br/>
+</p>

@@ -1,0 +1,20 @@
+## YAML Template.
+admin_account:
+  account: admin
+  worker_group: admin_group
+
+manager_account:
+  account: manager
+  worker_group: worker_group
+
+leader_account:
+  account: leader
+  worker_group: worker_group
+
+worker_account_1:
+  account: worker_1
+  worker_group: worker_group
+
+worker_account_2:
+  account: worker_2
+  worker_group: worker_group

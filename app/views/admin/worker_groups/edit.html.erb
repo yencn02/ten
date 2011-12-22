@@ -1,0 +1,29 @@
+<%= javascript_include_tag "tiny_mce/tiny_mce" %>
+<%= javascript_include_tag "tiny_editor" %>
+<div id="admin" class="grid_16">
+  <h1>Edit worker group</h1>
+  <%= form_for @worker_group, :url => url_for(:action => "update", :id => params[:id]) do |f| %>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :description %><br />
+      <%= f.text_area :description %>
+    </p>
+    <p>
+      <%= f.label :company_id %><br/>
+      <%
+      companies = company_container(@companies)
+    %>
+      <%= f.select 'company_id', companies, {:selected => @worker_group.company_id} %>
+    </p>
+    <br/>
+    <p>
+      <%= f.submit "Edit" %>
+      <%= link_to 'Back', admin_worker_groups_path %>
+    </p>
+  <% end %>
+  
+</div>

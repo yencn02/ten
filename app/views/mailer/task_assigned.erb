@@ -1,0 +1,9 @@
+Hi <%= @task.worker.name%>,
+<br/><br/>
+A task <%= @task.title%>(<%= @task.project.name%>) assigned to you.
+<br/>
+Please <a href="http://<%= HostUrl %>/project/<%=@task.project_id%>/task/<%=@task.id%>/status/<%=@task.status%>">click here</a> to view details:
+<br/><br/><br/>
+   Thanks,<br/>
+10.endax.com
+

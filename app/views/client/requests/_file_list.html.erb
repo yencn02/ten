@@ -1,0 +1,41 @@
+<% if files.empty? %>
+  <div id="noFileMessage" class="reqMessage">Want to be the first one who attaches a file?</div>
+<% else %>
+  <!-- List of client_request changes -->
+  <div id="noFileMessage" class="attachedFile" style="display: none">Want to be the first one who attaches a file?</div>
+  <!--
+    This (http://wiki.rubyonrails.org/rails/pages/InPlaceEditing) explains the meaning of the line of
+    code which creates an instance variable.
+    @file = file
+  -->
+  <% page = files.current_page %>
+  <% files.each do |file| %>
+    <div class="attachedFile" id="file<%= file.id %>">
+      <% @file = file %>
+      <b><%= link_to file.filename, file.public_filename -%></b>
+      <%= link_to "Delete",
+        :url => {:action => "delete_file", :id => file.id, :afp => page},
+        :remote => true,
+        :loading => "AppMessage.showStatus('Deleting...')",
+        :success => "AppMessage.hideStatus()"
+      %>
+      <a id="fileNote<%= file.id %>" href="#">Edit note</a>
+      <br/>
+      <%= time_ago_in_words(file.created_at, true) %>&nbsp;ago<br/>
+      <%= in_place_editor_field :file, "description",
+        {:id => file.id},
+        {:url => "/client_requests/set_file_description/#{file.id}",
+          :external_control => "fileNote#{file.id}", :rows => 4} %>
+    </div>
+  <% end %>
+  <div class="floatLeft">
+    <%= will_paginate files, :param_name => "afp",
+      :id => "paginateFiles",
+      :params => {
+        :controller => "client_requests",
+        :action => "paginate_files",
+        :rid => files.first.client_request_id}
+    %>
+  </div>
+  <img id="paginateFileSpinner" src="/images/spinner.gif" alt="spinner" class="floatLeft" style="display: none;" />
+<% end %>

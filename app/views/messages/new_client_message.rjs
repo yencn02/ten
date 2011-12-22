@@ -1,0 +1,34 @@
+# Resolve the ID suffix
+id_suffix = get_id_suffix(params)
+@message = ClientMessage.new
+@message.body = params["newMessageBody#{id_suffix}"]
+#tempory assign fixed title base on body
+@message.title = @message.body.summary
+@message.client_request_id = params["clientRequestId#{id_suffix}"]
+@message.sender = current_account
+
+if @message.save && @message.errors.empty?
+  ClientMessage.init_message_status(@message)
+  
+  notified_by_email = params["newMessageNotified#{id_suffix}"]
+  unless notified_by_email.nil?
+    Mailer.deliver_task_message(@message) unless @message.task.nil?
+  end
+
+  page["newMessageError#{id_suffix}"].hide() # Hide the error messages
+  page["messageForm#{id_suffix}"].reset() # Reset the form
+  page["newMessage#{id_suffix}"].hide() # Hide the form
+  page["newMessageLink#{id_suffix}"].hide() # Hide "New Message" link
+  page["noMessageText#{id_suffix}"].hide() # Hide "There are no messages" text
+  page.call "AppMessage.hideStatus" # Hide the "Saving ..." status
+
+  page.insert_html :top, "messageList#{id_suffix}", :partial => "messages/client_message",
+    :locals => {:message => @message, :id_suffix => id_suffix, :readonly => false}
+  page.visual_effect :highlight, "message#{@message.id}", {:duration => 2}
+else
+  page.call "AppMessage.hideStatus"
+  page.replace "newMessageError#{id_suffix}",
+    (error_messages_for :message, :id => "newMessageError#{id_suffix}")
+  page["saveMessageButton#{id_suffix}"].enable();
+  page["newMessageBody#{id_suffix}"].focus();
+end

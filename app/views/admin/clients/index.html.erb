@@ -1,0 +1,43 @@
+<div id="admin" class="grid_16">
+  <h1>List of Clients</h1>
+  <% if @clients.size > 0 %>
+    <table width="100%">
+      <% none_displayed_columns = ["id", "crypted_password", "salt", "remember_token", "remember_token_expires_at", "type", "activity"] %>
+      <thead>
+        <tr>
+          <% Client.column_names.each{|column| %>
+            <% if !none_displayed_columns.include?(column) %>
+              <th>
+                <% if column == "enabled" %>
+                  Status
+                <% else %>
+                  <%= column.gsub("_", " ").camelize %>
+                <% end %>
+              </th>
+            <% end %>
+          <% } %>
+        </tr>
+      </thead>
+      <% @clients.each{|client| %>
+        <tr>
+          <% Client.column_names.each{|column| %>
+            <% if !none_displayed_columns.include?(column) %>
+              <td>
+                <% if column == "name" %>
+                  <%= link_to client[column], client.admin_client_path %>
+                <% elsif column == "enabled" %>
+                  <%= client[column] == true ? "Active" : "Inactive" %>
+                <% else %>
+                  <%= raw strip_format_font(client[column]) %>
+                <% end %>
+              </td>
+            <% end %>
+          <% } %>
+        </tr>
+      <% } %>
+    </table>
+    <%= will_paginate @clients %>
+  <% else %>
+    There are no clients available.
+  <% end %>
+</div>

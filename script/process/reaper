@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+for process in `ps axwwl`.grep(/dispatch\.fcgi/).collect { |s| s.split[1] } 
+  puts "Sending USR2 to dispatch.fcgi process #{process}" 
+  Process.kill("USR2", process.to_i) 
+end

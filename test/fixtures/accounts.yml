@@ -1,0 +1,182 @@
+--- 
+accounts_009: 
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  name: Administrator
+  updated_at: 2009-03-25 14:49:36
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  activity: "1"
+  type: Worker
+  remember_token_expires_at: 
+  enabled: "1"
+  id: "541702176"
+  description: 
+  remember_token: 
+  phone: 
+  link: 
+  address: 
+  login: admin
+  created_at: 2009-02-26 07:33:47
+  email: admin@company-name.com
+accounts_001: 
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  name: Client 1
+  updated_at: 2009-03-25 14:49:36
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  activity: "64"
+  type: Client
+  remember_token_expires_at: 
+  enabled: "1"
+  id: "33830377"
+  description: 
+  remember_token: 
+  phone: 
+  link: 
+  address: 
+  login: client1
+  created_at: 2009-02-26 07:33:47
+  email: client1@company-name.com
+accounts_002: 
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  name: Client 2
+  updated_at: 2009-03-25 14:49:36
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  activity: "90"
+  type: Client
+  remember_token_expires_at: 
+  enabled: "1"
+  id: "33830378"
+  description: 
+  remember_token: 
+  phone: 
+  link: 
+  address: 
+  login: client2
+  created_at: 2009-02-26 07:33:47
+  email: client2@company-name.com
+accounts_003: 
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  name: Client 3
+  updated_at: 2009-03-25 14:49:36
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  activity: "10"
+  type: Client
+  remember_token_expires_at: 
+  enabled: "1"
+  id: "33830379"
+  description: 
+  remember_token: 
+  phone: 
+  link: 
+  address: 
+  login: client3
+  created_at: 2009-02-26 07:33:47
+  email: client3@company-name.com
+accounts_004: 
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  name: Client 4
+  updated_at: 2009-03-25 14:49:36
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  activity: "93"
+  type: Client
+  remember_token_expires_at: 
+  enabled: "1"
+  id: "33830380"
+  description: 
+  remember_token: 
+  phone: 
+  link: 
+  address: 
+  login: client4
+  created_at: 2009-02-26 07:33:47
+  email: client4@company-name.com
+accounts_005: 
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  name: Client 5
+  updated_at: 2009-03-25 14:49:36
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  activity: "75"
+  type: Client
+  remember_token_expires_at: 
+  enabled: "1"
+  id: "33830381"
+  description: 
+  remember_token: 
+  phone: 
+  link: 
+  address: 
+  login: client5
+  created_at: 2009-02-26 07:33:47
+  email: client5@company-name.com
+accounts_006: 
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  name: Worker 2
+  updated_at: 2009-03-25 14:49:36
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  activity: "98"
+  type: Worker
+  remember_token_expires_at: 
+  enabled: "1"
+  id: "48158003"
+  description: 
+  remember_token: 
+  phone: 
+  link: 
+  address: 
+  login: worker2
+  created_at: 2009-02-26 07:33:47
+  email: worker2@company-name.com
+accounts_007: 
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  name: Worker 1
+  updated_at: 2009-03-25 14:49:36
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  activity: "64"
+  type: Worker
+  remember_token_expires_at: 
+  enabled: "1"
+  id: "48158004"
+  description: 
+  remember_token: 
+  phone: 
+  link: 
+  address: 
+  login: worker1
+  created_at: 2009-02-26 07:33:47
+  email: worker1@company-name.com
+accounts_008: 
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  name: Leader
+  updated_at: 2009-03-25 14:49:36
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  activity: "46"
+  type: Worker
+  remember_token_expires_at: 
+  enabled: "1"
+  id: "109029351"
+  description: 
+  remember_token: 
+  phone: 
+  link: 
+  address: 
+  login: leader
+  created_at: 2009-02-26 07:33:47
+  email: leader@company-name.com
+accounts_009: 
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  name: Manager
+  updated_at: 2009-03-25 14:49:36
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  activity: "46"
+  type: Worker
+  remember_token_expires_at: 
+  enabled: "1"
+  id: "109029360"
+  description: 
+  remember_token: 
+  phone: 
+  link: 
+  address: 
+  login: manager
+  created_at: 2009-02-26 07:33:47
+  email: manager@company-name.com
+  

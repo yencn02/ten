@@ -1,0 +1,35 @@
+# Check if the current account is allowed to create a note
+task = Task.find_by_id(params[:task_id], current_account)
+if task.nil?
+  page.call "AppMessage.showError", h("<Task id:#{params[:task_id]}> does not exist.")
+  return
+end
+
+#comment out this - allow developer to add note
+#unless task.allows_update?(current_account)
+#  page.call "AppMessage.showError", 
+#    h("<Account id:#{current_account.id}> is not allowed to create a technical note.")
+#  return
+#end
+
+
+# Save the new technical note.
+@technical_note = TechnicalNote.new
+@technical_note.description = params[:noteDescription]
+@technical_note.task_id = params[:task_id]
+
+# The new technical note is saved successfully.
+if @technical_note.save && @technical_note.errors.empty?
+  # Refresh the list of technical notes.
+  # Highlight the latest technical notes.
+
+  page.call "TechnicalNote.onSave"
+  @technical_notes = TechnicalNote.paginate_by_task(@technical_note.task_id, 1)
+  page.replace_html "noteList",
+    :partial => "tasks/note_list", :locals => {:notes => @technical_notes}
+  page.visual_effect :highlight, "note#{@technical_note.id}", {:duration => 2}
+else
+  # Show error messages.
+  page.replace "newNoteError", (error_messages_for :technical_note, :id => "newNoteError")
+  page["noteDescription"].focus()
+end

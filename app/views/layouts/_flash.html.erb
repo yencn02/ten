@@ -1,0 +1,8 @@
+<% unless flash.nil? %>
+  <% if flash[:info] %>
+    <div class="message good"><%= h flash[:info] %></div>
+  <% end %>
+  <% unless flash[:notice].nil? %>
+    <div class="message bad"><%= h flash[:notice] %></div>
+  <% end %>
+<% end %>

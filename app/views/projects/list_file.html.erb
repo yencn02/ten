@@ -1,0 +1,57 @@
+<style>
+.status {
+  padding-top:3px;
+  color: #F9007D;
+  font-size: 8pt;
+  font-weight: bold;
+}
+</style>
+
+<br>
+<div class="subtask-header">Upload files of project : <%= @project.title %></div>
+<br>
+
+<table style="clear: both" width="100%" cellspacing="1" cellpadding="5">
+<tr>
+  <th class="th-left" width="100px">REF</th>     
+  <th class="th-left">File </th>  
+  <th class="th-center" style="background-color: #5f5;" width="60px">Download</th>
+</tr>
+
+<% @upload.each do |file| %>
+<tr>
+  <td class="td-left">    
+  </td>
+  <td class="td-left">
+    <div>
+      <span style="width:90px;float:left;"><u><b>Title</b></u></span>
+      <span style ="color: #4169E1;"><%= file.title %></span>
+    </div>
+    <div>
+      <span style="width:90px;float:left;"><u><b>Desccription</b></u></span>
+      <span><%= file.description %></span>
+    </div>    
+    <div>
+      <span style="width:90px;float:left;"><u><b>FileName</b></u></span>
+      <span style ="color: #4169E1;"><%= file.filename %></span>
+    </div>
+    <div>
+      <span style="width:90px;float:left;"><u><b>Type</b></u></span>
+      <span><%= file.content_type %></span>
+    </div>    
+    <div>
+        <span style="width:90px;float:left;"><u><b>Size</b></u></span>
+        <span><%= file.size %></span>      
+    </div>    
+  </td>
+  <td class="td-center" style="background-color: #afa; font-size: 8pt">   
+    <%= link_to image_tag('/images/icon_download.gif', :class => 'link-image', :alt => 'Insert'), :action => 'download', :id => file %>        
+  </td>
+</tr>
+<% end %>
+</table>
+
+<br/><%= will_paginate @upload %>
+
+<%= link_to 'Back', {:action => 'index'} %> 
+

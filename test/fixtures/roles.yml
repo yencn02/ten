@@ -1,0 +1,16 @@
+--- 
+roles_004: 
+  name: worker
+  id: "1004901987"
+roles_005: 
+  name: manager
+  id: "1049798170"
+roles_001: 
+  name: admin
+  id: "364965917"
+roles_002: 
+  name: client
+  id: "479987982"
+roles_003: 
+  name: lead
+  id: "620174323"

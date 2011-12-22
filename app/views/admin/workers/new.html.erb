@@ -1,0 +1,72 @@
+<%= javascript_include_tag "tiny_mce/tiny_mce" %>
+<%= javascript_include_tag "tiny_editor" %>
+<div id="admin" class="grid_16">
+  <h1>New worker</h1>
+  <%= form_for @worker, :url => admin_workers_path do |f| %>
+    <%= f.error_messages %>    
+    <p>
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :login %><br />
+      <%= f.text_field :login %>
+    </p>
+    <p>
+      <%= f.label :email %><br />
+      <%= f.text_field :email %>
+    </p>
+    <p>
+      <%= f.label :address %><br />
+      <%= f.text_field :address %>
+    </p>
+    <p>
+      <%= f.label :phone %><br />
+      <%= f.text_field :phone %>
+    </p>
+    <p>
+      <%= f.label :link %><br />
+      <%= f.text_field :link %>
+    </p>
+    <p>
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+    </p>
+    <p>
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %>
+    </p>
+    <p>
+      <%= f.label :description %><br />
+      <%= f.text_area :description %>
+    </p>
+    <p>
+      <%= f.label :company %><br />
+      <%
+      company = params[:worker_][:company] if params[:worker_] && params[:worker_][:company]
+      companies = company_container(@companies)
+    %>
+      <%= select "worker_", 'company', options_for_select(companies, get_selected(companies, company.to_i)), {},{:onchange => "NewWorker.pupulateGroup();"}%>
+    </p>
+    <p>
+      <%= f.label :group %><br />
+      <%
+      groups = get_groups(@companies)[company.to_i]
+      group = params[:worker_][:group] if params[:worker_] && params[:worker_][:group]
+    %>
+      <%= select "worker_", 'group', options_for_select(groups, get_selected(groups, group.to_i)) %>
+    </p>
+    <p>
+      <%= f.label :role %><br />
+      <%
+      role = params[:worker_][:role] if params[:worker_] && params[:worker_][:role]
+      roles = role_container(@roles)
+    %>
+      <%= select "worker_", 'role', options_for_select(roles, get_selected(roles, role.to_i)) %>
+    </p><br/>
+    <p>
+      <%= f.submit "Create" %>
+    </p>
+  <% end %>
+  <%= groups_to_js(@companies) %>
+</div>

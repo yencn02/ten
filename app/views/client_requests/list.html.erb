@@ -1,0 +1,23 @@
+<% if @project.nil? %>
+  <strong>Select a project</strong><br/>
+  <% Project.find_by_account(@current_account).each do |project| %>
+    <%= link_to project.name, :controller => :client_requests, :action => :list, :project_id => project.id %>
+  <% end %>
+<% else %>
+  Project: <strong><%= @project.name %></strong><br/>
+  ClientRequests:<br/>
+  <table border="0">
+  <tr>
+  <td>Title</td>
+  <td>Description</td>
+  <td>Priority</td>
+   <td>State</td>
+  <% @client_requests.each do |client_request| %>
+  <tr request_id="<%=client_request.id%>">
+  <td><%= link_to client_request.title, client_request_path(client_request) %><br/></td>    
+  <td><%=h client_request.description %></td>
+  <td><%=h ClientRequest::priority_text_for(client_request.priority) %></td>
+  <td><%=h client_request.status %></td>
+  </tr>
+  <% end %>
+<% end %>

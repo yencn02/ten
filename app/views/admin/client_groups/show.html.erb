@@ -1,0 +1,58 @@
+<div id="admin" class="grid_16">
+<h1>Client group details</h1>
+<span style="color: green"><%= flash[:notice] %>&nbsp;</span>
+<% none_displayed_columns = ["id"] %>
+<% ClientGroup.column_names.each{|column| %>
+  <% if !none_displayed_columns.include?(column) %>
+    <p>
+
+      <% if column == "client_company_id" %>
+        <b>Company</b>: <%= @client_group.client_company.name if @client_group.client_company %>
+      <% else %>
+        <b><%= column.gsub("_", " ").camelize %></b>: <%= raw @client_group[column] %>
+      <% end %>
+    </p>
+  <% end %>
+<% } %>
+<br/>
+<% if @client_group.accounts.size > 0 %>
+  <h2>List of clients in group:</h2>
+  <table width="100%">
+    <% none_displayed_columns = ["id", "crypted_password", "salt", "remember_token", "remember_token_expires_at", "type", "activity"] %>
+    <tr>
+      <% Client.column_names.each{|column| %>
+        <% if !none_displayed_columns.include?(column) %>
+          <td>
+            <b>
+              <% if column == "enabled" %>
+                Status
+              <% else %>
+                <%= column.gsub("_", " ").camelize %>
+              <% end %>
+            </b>
+          </td>
+        <% end %>
+      <% } %>
+    </tr>
+    <% @client_group.accounts.each{|client| %>
+      <tr>
+        <% Client.column_names.each{|column| %>
+          <% if !none_displayed_columns.include?(column) %>
+            <td>
+              <% if column == "name" %>
+                <%= link_to client[column], client.admin_client_path %>
+              <% elsif column == "enabled" %>
+                <%= client[column] == true ? "Active" : "Inactive" %>
+              <% else %>
+                <%= raw client[column] %>
+              <% end %>
+            </td>
+          <% end %>
+        <% } %>
+      </tr>
+    <% } %>
+  </table>
+<% else %>
+  <h2>No clients joined into this group.</h2>
+<% end %>
+</div>

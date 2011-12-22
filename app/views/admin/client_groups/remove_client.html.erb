@@ -1,0 +1,19 @@
+<div id="admin" class="grid_16">
+<h1>Group: <%= @client_group.name %></h1>
+<h2>Remove client</h2>
+<span style="color: green"><%= flash[:notice] %>&nbsp;</span>
+<span style="color: green"><%= flash[:error] %>&nbsp;</span>
+<% if @client_group %>
+  <% if @clients.size > 0 %>
+    Please select clients in list
+    <%= form_for :client_group, :url => "/admin/client_groups/update/#{@client_group.id}", :method => "put" do |f| %>
+      <%= select_tag "accounts", options_for_select(@clients.map{|x| [x.name, x.id]}), :multiple => true%>
+      <br/>
+      <input type="hidden" name="action_type" value="remove"/>
+      <%= f.submit "Remove" %>
+    <% end %>
+  <% else %>
+    There are no clients to remove.
+  <% end %>
+<% end %>
+</div>

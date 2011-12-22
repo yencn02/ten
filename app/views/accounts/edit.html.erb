@@ -1,0 +1,50 @@
+<%= javascript_include_tag "tiny_mce/tiny_mce" %>
+<%= javascript_include_tag "tiny_editor" %>
+<div id="admin" class="grid_16">
+  <%= form_for @worker,:url => url_for(:action => "update", :id => params[:id]) do |f| %>
+      <%= f.error_messages %>
+      <h1>
+        Edit My Account
+      </h1>
+      <p>
+        <%= f.label :name %><br />
+        <%= f.text_field :name %>
+      </p>
+      <p>
+        <%= f.label :login_name %><br />
+        <%= f.text_field :login , :readonly => true%>
+      </p>
+      <p>
+        <%= f.label :email %><br />
+        <%= f.text_field :email %>
+      </p>
+      <p>
+        <%= f.label :address %><br />
+        <%= f.text_field :address %>
+      </p>
+      <p>
+        <%= f.label :phone %><br />
+        <%= f.text_field :phone %>
+      </p>
+      <p>
+        <%= f.label :link %><br />
+        <%= f.text_field :link %>
+      </p>
+      <p>
+        <%= f.label :password %><br />
+        <%= f.password_field :password %>
+      </p>
+      <p>
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation %>
+      </p>
+      <p>
+        <%= f.label :description %><br />
+        <%= f.text_area :description %>
+      </p>
+      
+    <p>
+      <%= f.submit "Save" %>
+    </p>
+  <% end %>
+</div>  

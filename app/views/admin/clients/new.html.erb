@@ -1,0 +1,62 @@
+<%= javascript_include_tag "tiny_mce/tiny_mce" %>
+<%= javascript_include_tag "tiny_editor" %>
+<div id="admin" class="grid_16">
+<h1>New client</h1>
+<%= form_for @client, :url => admin_clients_path do |f| %>
+  <%= f.error_messages %> 
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :login %><br />
+    <%= f.text_field :login %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </p>
+  <p>
+    <%= f.label :link %><br />
+    <%= f.text_field :link %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.text_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation %><br />
+    <%= f.text_field :password_confirmation %>
+  </p>
+  <p>
+    <%= f.label :company %><br />
+    <%
+      company = params[:worker_][:company] if params[:worker_] && params[:worker_][:company]
+      companies = company_container(@companies)
+    %>
+    <%= select "client_", 'company', options_for_select(companies,@client_company ), {},{:onchange => "NewClient.pupulateGroup();"} %>
+  </p>
+  <p>
+    <%= f.label :group %><br />
+    <%= select "client_", 'group', @groups.map{|g|[g.name,g.id]}, :selected=>@client_group,:prompt => '(Select Group)' %>
+  </p><br/>
+  <p>
+    <%= f.submit "Create" %>
+    <%= link_to 'Back', admin_clients_path %>
+  </p>
+<% end %>
+
+<%= groups_to_js(@companies) %>
+</div>

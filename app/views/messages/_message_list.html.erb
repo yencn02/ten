@@ -1,0 +1,79 @@
+<!-- TODO Remove this partial, it's replaced by _messages.html.erb partial -->
+<!-- Only show the "New message" form when there's no message. -->
+<% if messages.empty? %>
+  <a href="#" id="newMessageLink">New message</a>
+<% else %>
+  <a href="#" id="newMessageLink" style="display: none">New message</a>
+<% end %>
+<div id="newMessage" style="display: none">
+  <div id="newMessageError" style="display: none">&nbsp;</div>
+  <% form_tag :url => "/messages/new_message",
+    :html => {:id => "messageForm"},
+    :remote => true,
+    :loading => "Message.onSave();" do %>
+    <p>
+      <%= text_area_tag "newMessageBody", nil, :class => "flexibleTextArea", :rows => "5" %><br/>
+      <%= check_box_tag "newMessageNotified", "1", true %>
+      <%= label_tag "notified", "Notify by email" %>
+    </p>
+    <p>
+      <%= submit_tag "Save", :id => "saveMessageButton" %>
+      <input type="button" id="discardMessageButton" value="Discard" />
+    </p>
+    <%= hidden_field_tag "client_requestId", client_request.id %>
+  <% end %>
+</div>
+
+
+<div id="messageList">
+  <!--
+    _message.html.erb partial is a copy of the following snippet. The purpose is to improve the view
+    performance. Rendering multiple partials is slower than rendering multiple records in one page.
+  -->
+  <!--
+    Make sure you copy the snippet inside the below each block to _message.html.erb partial if you
+    make any modification.
+  -->
+  <% messages.each do |message| %>
+    <div id="message<%= message.id %>" class="reqMessage">
+      <div class="messageHeader">
+        <span class="senderName"><%= message.sender.name %></span>
+        <span class="messageSubject"><%= truncate(message.body, :length => 60) %></span>
+        <span class="sentAt">
+          <%= time_ago_in_words(message.created_at, true).capitalize %>&nbsp; ago
+        </span>
+      </div>
+      <div id="messageBody<%= message.id %>" style="display: none" class="messageBody">
+        <div id="messageContent<%= message.id %>">&nbsp;</div>
+        <%= hidden_field_tag "messageRepliedTo#{message.id}", word_wrap(message.body, Message::LINE_WIDTH) %>
+        <div class="MessageAction">
+          <a href="#" id="messageReplyAnchor<%= message.id %>">Reply</a>
+          <% if message.sender == @current_account %>
+            <a href="#" id="messageDeleteAnchor<%= message.id %>">Delete</a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<!-- A form for replying a message -->
+<div id="replyMessage" style="display: none">
+  <div id="replyMessageError" style="display: none">&nbsp;Me Here</div>
+  <% form_tag :url => "/messages/reply",
+    :remote => true,
+    :loading => "Message.onReply();",
+    :html => {:id => "replyForm", :name => "replyForm"} do %>
+    <p>
+      <%= text_area_tag "replyMessageBody", nil, :class => "flexibleTextArea", :rows => "8" %><br/>
+      <%= check_box_tag "replyMessageNotified", "1", true %>
+      <%= label_tag "notified", "Notify by email" %>
+    </p>
+    <p>
+      <%= submit_tag "Reply", :id => "replyButton" %>
+      <input type="button" id="discardReplyButton" value="Discard" />
+    </p>
+    <%= hidden_field_tag "client_requestId", client_request.id %>
+  <% end %>
+</div>
+

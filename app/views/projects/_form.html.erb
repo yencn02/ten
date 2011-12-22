@@ -1,0 +1,30 @@
+<% method = params[:action] == "edit" ? "put" : "post" %>
+<%= form_for project, :method => method, :remote => true,
+  :success => "ProjectForm.toggleSpinner()",
+  :loading => "ProjectForm.toggleSpinner()" do |f| %>
+  <div id="errorExplanation" style="display: none"></div>
+
+  <p>
+    <%= f.label :name, "Name:"%>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description, "Description:"%>
+    <%= f.text_area :description, :cols => 40, :rows => 10%>
+  </p>
+  <p>
+    <%= f.label :worker_group_id, "Worker Group:"%> <br/>
+    <%= collection_select(:project, :worker_group_id, @worker_groups, :id, :name) %>
+  </p>
+  <p>
+    <%= f.label :client_group_id, "Client Group:"%> <br/>
+    <%= collection_select(:project, :client_group_id, @client_groups, :id, :name) %>
+  </p>
+  <p>
+    <%= f.check_box :status, {}, "active", "inactive"%> <%= f.label :status, "Active"%>
+  </p>
+  <% button_label = params[:action] == "edit" ? "Update" : "Create" %>
+  <input type="submit" class="register-button" value="<%= button_label %>" />
+  <input type="button" class="register-button" value="Cancel" />
+  <%= spinner %>
+<% end %>

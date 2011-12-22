@@ -1,0 +1,29 @@
+<% content_for :javascript do %>
+  <%= stylesheet_link_tag "datePicker" %>
+<% end %>
+
+<div id="estimate_task" class="grid_16">
+  <p><%= flash[:notice] -%></p>
+  Volunteer for Task <br/>
+  <%= error_messages_for :task %>
+  <%= form_for @task, :url => {:action => :volunteer} do |f| -%>
+    <p>
+      <b><%= @task.title %></b><br/>
+      <%= raw strip_format_font(@task.client_request.description)%>
+    </p>
+    
+    <p><%= f.label :estimated_hours %><br/>
+      <%= f.text_field :estimated_hours %></p>
+    <br/>
+    <p>
+      <%= f.label :start_date %><br/>
+      <%= f.text_field :start_date, :class => "date-pick" %><br/><br/>
+      <%= f.label :due_date %><br/>
+      <%= f.text_field :due_date, :class => "date-pick" %>
+    </p>
+    <input type="hidden" name="task_id" value="<%=@task.id%>"/>
+    <br/>
+    <p><%= f.submit "Volunteer" %></p>
+    <%= set_focus_to :task, :estimated_hours %>
+  <% end -%>
+</div>

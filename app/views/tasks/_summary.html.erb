@@ -1,0 +1,43 @@
+<div class="info-summary">
+  <span class="title"><%= task.title %></span>  
+  <% if current_account.has_role?(Role::MANAGER) || current_account.has_role?(Role::LEAD) %>
+    <span style="text-align: center;"><a href="#" id="edit_task">Edit</a></span>
+  <% end %>
+</div>
+<%= render :partial => "edit", :locals => {:task => task}%>
+<table>
+  <tbody>
+    <tr>
+      <td colspan="8"><%=raw strip_format_font(task.client_request.description) %></td>
+    </tr>
+    <tr>
+      <th>Milestone</th>
+      <td><%= h task.client_request.milestone.title %></td>
+      <th>Status</th>
+      <td><%= task.status%></td>
+      <th>Assigned to</th>
+      <td>        
+        <% if task.worker.nil? %>
+          Unassigned
+        <% else %>
+          <%= task.worker.name%>          
+        <%end%>
+      </td>
+      <th>Estimated</th>
+      <td>
+        <%= task.estimated_hours%> hour(s)
+      </td>
+    </tr>
+    <tr>
+      <th>Created</th>
+      <td><%= task.client_request.created_at.strftime("%b %d")%> (<%= time_ago_in_words(task.client_request.created_at) -%>&nbsp;ago)</td>
+      <th>Priority</th>
+      <td><%= ClientRequest::priority_text_for(task.client_request.priority) %></td>
+      <th>Due date</th>
+      
+      <td><%= task.due_date.nil? ? "" : task.due_date.strftime("%b-%d-%Y")%></td>
+      <th>Completed</th>
+      <td><%= task.total_billed_hours -%> hour(s)</td>
+    </tr>
+  </tbody>
+</table>

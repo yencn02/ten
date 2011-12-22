@@ -1,0 +1,13 @@
+<% if client_requests.length == 0 then %>
+There is no client_request in this milestone
+<% else %>
+<ul id= "client_requests">
+<%
+     client_requests.each do |req|
+%>
+<li>
+				<%= link_to req.title, client_request_path(req)%>						   
+</li>
+		<% end %>
+</ul>
+<% end %>

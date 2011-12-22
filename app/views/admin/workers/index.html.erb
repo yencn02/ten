@@ -1,0 +1,39 @@
+<div id="admin" class="grid_16">
+<h1>List of Workers</h1>
+<table width="100%">
+<% none_displayed_columns = ["id", "crypted_password", "salt", "remember_token", "remember_token_expires_at", "type", "activity"] %>
+  <thead>
+  <tr>
+    <% Worker.column_names.each{|column| %>
+      <% if !none_displayed_columns.include?(column) %>
+        <th>
+            <% if column == "enabled" %>
+              Status
+            <% else %>
+              <%= column.gsub("_", " ").camelize %>
+            <% end %>
+        </th>
+      <% end %>
+    <% } %>
+  </tr>
+  </thead>
+<% @workers.each{|worker| %>
+  <tr>
+    <% Worker.column_names.each{|column| %>
+      <% if !none_displayed_columns.include?(column) %>
+        <td>
+          <% if column == "name" %>
+            <%= link_to worker[column], worker.admin_worker_path %>
+          <% elsif column == "enabled" %>
+            <%= worker[column] == true ? "Active" : "Inactive" %>
+          <% else %>
+            <%= raw worker[column] %>
+          <% end %>
+        </td>
+      <% end %>
+    <% } %>
+  </tr>
+<% } %>
+</table>
+<%= will_paginate @workers %>
+</div>

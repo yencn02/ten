@@ -1,0 +1,27 @@
+<% content_for :javascript do %>
+  <%= javascript_include_tag "tiny_mce/tiny_mce" %>
+  <%= javascript_include_tag "mce_editor" %>
+  <%= stylesheet_link_tag "datePicker" %>  
+<% end %>
+<%
+  file_id_suffixes = {"client_request_file" => "__client_request", "task_file" => "__task"}
+%>
+<div id="tasks-show">
+  <div id="info" class="grid_16 box" style="padding: 0px;">
+   <%= render :partial => "summary", :locals => {:task => @task} %>
+  </div>
+  <div class="clear"></div>
+  <div id="right-col" class="grid_8">    
+    <%= render :partial => 'tasks/changes', :locals => {:client_request => @task.client_request, :changes => @client_request_changes, :readonly => change_request_readonly?(@current_account)} %>
+    <%= render :partial => "attached_files/files",
+      :locals => { :files => @client_request_files, :id_suffix => file_id_suffixes["client_request_file"],
+                   :client_request_id => @task.client_request.id, :task_id => nil, :readonly => change_request_readonly?(@current_account)} %>
+    <%= render "tasks/client_discussion" %>
+  </div>
+  <div id="left-col" class="grid_8">
+    <%= render :partial => "tasks/technical_notes", :locals => {:technical_notes => @technical_notes, :task_id => @task.id} %>
+    <%= render :partial => 'tasks/technical_notes_files', :locals => {:files => @task_files, :task_id => @task.id, :id_suffix => "__task",
+           :client_request_id => nil, :readonly => false}%>
+    <%= render "tasks/developer_discussion" %>    
+  </div>
+</div>

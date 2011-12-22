@@ -1,0 +1,29 @@
+.messageItem{
+  border-bottom: 2px gray solid;
+  padding: 5px;
+}
+
+.unread_status{
+  font-weight: bold;
+}
+.messageItem a{
+  text-decoration: none;
+}
+
+.messageItem a:link {
+  color: black;
+}
+.messageItem a:visited {
+  color: black;
+}
+.messageItem a:hover {
+  color: black;
+}
+.messageItem a:active {
+  color: black;
+}
+
+div#page-content {
+    margin: 15px;
+}
+

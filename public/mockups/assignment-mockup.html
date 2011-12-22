@@ -1,0 +1,193 @@
+<style>
+.assignment {
+ font-family: helvetica;
+ padding: 5px;
+ border-top: 1px dotted #bbb;
+}
+.assignment-title {
+ padding: 3px;
+}
+.assignment-title-link {
+ font-size: 15pt;
+ color: #809FFF;
+ text-decoration: none;
+}
+.assignment-title-link:hover {
+ text-decoration: underline;
+}
+.assignment-hours {
+ float: right;
+ padding: 5px;
+ color: #333;
+ font-size: 10pt;
+}
+.assignment-date {
+ float: right;
+ font-size: 11pt;
+ font-family: courier;
+}
+.assignment-stats {
+ color: #fff;
+ margin: 3px;
+ width: 10%;
+ padding: 1px;
+}
+.assignment-description {
+ padding: 4px;
+ font-style: italic;
+ font-size: 10pt;
+}
+.assignment-project {
+ margin-left: 4px;
+ color: #00248F;
+}
+.assignment-project-link {
+ font-size: 9pt;
+ font-family: helvetica;
+ color: #00248F;
+ text-decoration: none;
+}
+.assignment-project-link:hover {
+ text-decoration: underline;
+}
+</style>
+ 
+
+[LIST VIEW]
+
+<table style="width: 70%">
+ <tr>
+  <td>
+
+   <div class="assignment">
+	<div class="assignment-hours">
+    9Hr
+    </div>
+    <div class="assignment-title">
+     <a class="assignment-title-link" href="#">Example Assignment Number One</a> <span class="assignment-stats"style="background-color: #f22;">HIGH</span>
+    </div>
+	<div class="assignment-date">
+    09JUN
+    </div>
+    
+    <div class="assignment-description">
+     A much  longer description of the task and maybe a little trunca..
+    </div>
+    <div class="assignment-project">
+     <a class="assignment-project-link" href="#">SUPER PROJECT</a> / <a class="assignment-project-link"  href="#">Some client_request if applicable</a>
+    </div> 
+   </div>
+
+  </td>
+ </tr>
+ <tr>
+  <td>
+
+   <div class="assignment">
+	<div class="assignment-hours">
+    3Hr
+    </div>
+    <div class="assignment-title">
+     <a class="assignment-title-link" href="#">Another Assignment </a> <span class="assignment-stats" style="background-color: #2f2;">MEDIUM</span>
+    </div>
+	<div class="assignment-date">
+    14JUN
+    </div>
+    
+    <div class="assignment-description">
+     Some details on another project that also might be trunca..
+    </div>
+    <div class="assignment-project">
+     <a class="assignment-project-link" href="#">LESSER PROJECT</a> 
+    </div> 
+   </div>
+
+  </td>
+ </tr>
+ <tr>
+  <td>
+
+   <div class="assignment">
+	<div class="assignment-hours">
+    30Hr
+    </div>
+    <div class="assignment-title">
+     <a class="assignment-title-link" href="#">Some Thing You Will Probably Never Get To.. </a> <span class="assignment-stats" style="background-color: #22f;">LOW</span>
+    </div>
+	<div class="assignment-date">
+    14AUG
+    </div>
+    
+    <div class="assignment-description">
+     That also might be some details on another project trunca..
+    </div>
+    <div class="assignment-project">
+     <a class="assignment-project-link" href="#">LESSER PROJECT</a> 
+    </div> 
+   </div>
+
+  </td>
+ </tr>
+</table>
+
+<br/><br/><br/><br/>
+[SHOW VIEW]
+
+<style>
+.assignment-hours-specific {
+ float: right;
+ padding: 5px;
+ color: #333;
+ font-size: 14pt;
+}
+.assignment-date-single {
+ font-size: 14pt;
+ margin-left: 4px;
+ margin-top: 10px;
+}
+.assignment-description-single {
+ padding: 4px;
+ font-size: 10pt;
+}
+.assignment-update {
+ border: 1px dotted #aaa;
+ float: right;
+ padding: 7px;
+ background-color: #809FFF;
+ margin-right: 10px;
+ color: #fff;
+}
+.assignment-input {
+ margin: 2px;
+}
+
+</style>
+
+
+<div class="assignment">
+  <div class="assignment-hours-specific">
+   30Hr
+  </div>
+  <div class="assignment-title">
+   <a class="assignment-title-link" href="#">
+	 Some Thing You Will Probably Never Get To.. </a> 
+	 <span class="assignment-stats" style="background-color: #22f;">LOW</span>
+  </div>
+  <div class="assignment-description-single">
+   That also might be some details on another project trunca might be some details on another project might be some details on another project might be some details on another project might be some details on another project might be some details on another project might be some details on another project might be some details on another project 
+  </div>
+ <div class="assignment-update">
+  <input class="assignment-input" type="checkbox"/> Completed <br/>
+  <input class="assignment-input" type="checkbox" disabled="true"/> Verified <br/>
+  <input class="assignment-input" type="submit" value="Update"/> 
+ </div>
+  <div class="assignment-date-single">
+   04AUG - 14AUG 
+  </div>
+  <div class="assignment-project">
+	<a class="assignment-project-link" href="#">LESSER PROJECT</a>
+   </div>
+<br/><br/><br/><br/>
+[DISCUSSION]
+
+</div>

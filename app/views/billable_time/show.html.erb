@@ -1,0 +1,20 @@
+<div class="grid_16">
+<p>
+  <b>TaskID:</b>
+  <%=h @billable_time.task_id %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @billable_time.description %>
+</p>
+
+<p>
+  <b>Billed hour:</b>
+  <%=h @billable_time.billed_hour %>
+</p>
+
+
+<%= link_to 'Edit', edit_billable_time_path(@billable_time) %> |
+<%= link_to 'Back', "/billable_time" %>
+</div>

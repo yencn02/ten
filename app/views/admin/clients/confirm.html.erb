@@ -1,0 +1,8 @@
+<div id="admin" class="grid_16">
+<span style="color: red"><%= flash[:error] %>&nbsp;</span>
+<h1> Confirm client removal</h1>
+<% if @client %>
+    Are you sure you want to remove the client named "<%= @client.name %>"?<br/>
+    <%= link_to 'Remove', @client.admin_client_path, :method => :delete %>
+<% end %>
+</div>

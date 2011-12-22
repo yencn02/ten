@@ -1,0 +1,35 @@
+<div class="Applet">
+  <h3 class="appletTitle">Technical Notes</h3>
+  <div class="floatRight">
+    <a id="showHideNotes" href="#">Hide</a>
+  </div>
+  <div id="notes" style="display: block" >
+    <div id="noteList">
+      <%= render :partial => "tasks/note_list", :locals => {:notes => notes} %>
+    </div>
+
+    <div class="ClearBoth">
+		<% display = task.allows_update?(current_account) ? "inline" : "none" %>
+		<a href="#" id="createNote" style="display: "inline"
+        onclick="TechnicalNote.toggleNewNoteForm()">Add new</a>
+    </div>
+    <div id="newNote" style="display: none" class="NewItemInlineForm">
+      <fieldset>
+        <div id="newNoteError" style="display: none">&nbsp;</div>
+        <% form_tag :url => "/tasks/new_note",
+          :remote => true
+          :html => {:id => "newNoteForm"},
+          :loading => "TechnicalNote.onSubmit()",
+          :success => "TechnicalNote.onComplete()" do %>
+          <p><%= label_tag "noteDescription", "Description" %><br/>
+          <%= text_area_tag "noteDescription", nil, :class => "flexibleTextArea", :rows => "5", :cols => "0" %></p>
+          <p>
+            <%= submit_tag "Save", :id => "saveNoteButton", :name => "saveNoteButton" %>
+            <input type="button" id="discardNoteButton" value="Discard" onclick="TechnicalNote.discard()" />
+          </p>
+          <div><%= hidden_field_tag "task_id", task.id %></div>
+        <% end %>
+      </fieldset>
+    </div>
+  </div>
+</div>

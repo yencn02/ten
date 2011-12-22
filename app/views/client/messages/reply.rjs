@@ -1,0 +1,37 @@
+# Resolve the ID suffix
+id_suffix = get_id_suffix(params)
+
+@message = ClientMessage.new
+@message.body = params["replyMessageBody#{id_suffix}"]
+#tempory assign fixed title base on body
+@message.title = @message.body.summary
+@message.sender = current_account
+@message.client_request_id = params["clientRequestIdReply#{id_suffix}"]
+@message.save
+
+if @message.save && @message.errors.empty?
+  ClientMessage.init_message_status(@message)
+  notified_by_email = params["replyMessageNotified#{id_suffix}"]
+  unless notified_by_email.nil?
+    Mailer.deliver_client_request_message(@message) unless @message.client_request.nil?
+  end
+
+  page["replyMessageError#{id_suffix}"].hide()
+  page["replyForm#{id_suffix}"].reset()
+  page["replyMessage#{id_suffix}"].hide()
+
+  page.call "AppMessage.hideStatus"
+  page.insert_html :bottom, "messageList#{id_suffix}", :partial => "messages/message",
+    :locals => {:message => @message, :id_suffix => id_suffix, :readonly => false}
+#  page["message#{@message.id}"].scrollTo()
+  page.visual_effect :highlight, "message#{@message.id}", {:duration => 2}
+
+else
+  error_message_element_id = "replyMessageError#{id_suffix}"
+  page.replace error_message_element_id,
+    "#{error_messages_for :message, :id => error_message_element_id}"
+  page["replyMessageError#{id_suffix}"].show()
+  page["replyButton#{id_suffix}"].enable();
+  page["replyMessageBody#{id_suffix}"].focus();
+end
+

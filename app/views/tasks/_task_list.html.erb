@@ -1,0 +1,75 @@
+<div class="pagination-wrapper">
+    <%=will_paginate tasks%>  
+</div>
+<div class="task-lists-content">
+<table summary="This table includes examples of as many table elements as possible">
+  <% tasks.each_with_index do |task, index| %>
+    <tr id="task<%= task.id %>">
+      <td class="id"><%= task.id %></td>
+      <td class="priority"><%= ClientRequest::priority_text_for(task.client_request.priority) %></td>
+      <td class="clock">
+        <% if (task.worker != nil) and (task.worker.login == @current_account.login) and !task.status.eql?("completed") %>
+          <a id="clock<%= task.id %>" class="clock" href="#"><img src="/images/clock.png" alt="clock" /></a>
+        <% end %>
+      </td>
+      <td class="name">
+        <%
+          title = task.title
+          title = "#{task.title} (#{task.project.name})" if params[:project_id].nil?
+        %>
+        <%= link_to title, "/project/#{task.project_id}/tasks/#{task.id}/status/#{task.status}" %>
+        <div style="display: none" class="timesheet-entry">
+          <%= form_tag(timesheets_path,
+            :remote => true,           
+            :loading => "TimesheetEntryForm.onSubmit();",
+            :success => "TimesheetEntryForm.onSuccess();") do %>
+            <div>
+              <%= text_area_tag "description", nil, :size => "50x5", :id => "description#{task.id}", :class => "mceEditor"%>
+            </div>
+            <div>
+              <label>Billed Hours:</label><br/>
+              <%= text_field_tag "billed_hour", nil, :id => "billed_hour#{task.id}", :class => "billed_hour" %><br/>
+              <% if task.status.eql?("assigned") %>
+              <%= check_box_tag "completed", "1", false, :class => "completed", :id => "complete#{task.id}" %>
+              <label>Completed</label><br/>
+              <div id="commit_hash_div<%= task.id %>" style="display:none">
+                <label>Commit Hash:</label><br/>
+                <%= text_field_tag "commit_hash", nil, :id => "commit_hash#{task.id}", :style => "width: 200px;" %>
+              </div><br/>
+              <% end %>
+              <%= hidden_field_tag "task_id", task.id, :id => "task_id#{task.id}" %>
+              <%= submit_tag "Save", :name => "Savebutton", :id => "Savebutton#{index}" %>
+              <input type="button" value="Cancel" class="cancel"/>
+              <%= image_tag 'spinner.gif', :class => 'spinner', :style => 'display: none;'%>
+            </div>
+          <% end %>
+        </div>
+      </td>
+      <td class="assignee">
+      <% if (task.status == Task::UNASSIGNED)
+        if(@current_account.has_role?(Role::WORKER)) %>
+          <%= link_to "Volunteer", "/tasks/show_volunteer/#{task.id}" %>
+        <% else  %>
+          <%= link_to "Unassigned", "/tasks/show_estimate/#{task.id}" %>
+        <% end %>
+      <% else %>
+        <%= link_to task.worker.login if !task.worker.nil?%>
+      <% end%>
+      </td>
+      <td class="status">
+        <input type="hidden" name="complete" value="<%=percent_complete(task.total_billed_hours, task.estimated_hours)%>"/>               
+        <%=image_tag(Gchart.pie :size => "60x60",
+          :data => [
+          percent_complete(task.total_billed_hours, task.estimated_hours),
+          percent_pending(task.total_billed_hours, task.estimated_hours)],
+          :bar_colors => ["6BB300", "FFCC00"],
+          :chart_background => "EEEEEE",
+          :background => 'EEEEEE', :border => 5)%>
+      </td>
+    </tr>
+  <% end %>
+</table>
+</div>
+<div class="pagination-wrapper">   
+    <%=will_paginate tasks%>
+</div>

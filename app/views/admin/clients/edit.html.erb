@@ -1,0 +1,59 @@
+<%= javascript_include_tag "tiny_mce/tiny_mce" %>
+<%= javascript_include_tag "tiny_editor" %>
+<div id="admin" class="grid_16">
+<h1>Edit client</h1>
+<%= form_for @client, :url => url_for(:action => "update", :id => params[:id]) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :login %><br />
+    <%= f.text_field :login %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </p>
+  <p>
+    <%= f.label :link %><br />
+    <%= f.text_field :link %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p>
+    <% if @client.enabled == true %>
+      <a href="#" id="set-activate"> Deactivate </a>
+    <% else %>
+      <a href="#" id="set-activate"> Activate </a>
+    <% end %>
+    <div class="status" style="display:none;">
+      <%= f.label :status %>
+      <%= f.select 'enabled', [["Active", true], ["Inactive", false]], {:selected => @client.enabled}%>
+    </div>
+  </p><br/>
+  <p>
+    <%= f.submit "Edit" %>
+    <%= link_to 'Back', admin_clients_path %>
+  </p>
+<% end %>
+</div>

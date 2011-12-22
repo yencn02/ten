@@ -1,0 +1,38 @@
+<% content_for :javascript do %>
+  <%= javascript_include_tag "facebox/facebox" %>
+<% end %>
+<% content_for :stylesheet do %>
+  <%= stylesheet_link_tag "../javascripts/facebox/facebox" %>
+<% end %>
+<div id="projects-list" class="grid_16">
+  <div class="pagination-wrapper">
+    <%= will_paginate @projects if @projects.size > 0 %>
+  </div>
+  <div class="clear"></div>
+
+  <div id="projects">
+    <% for project in @projects %>
+      <div class="project">
+        <h4><%= project.name %></h4>
+        <%= link_to 'Delete', project, :confirm => 'Are you sure you want to delete this project?', :method => :delete, :class => "action" %>
+        <%= link_to 'Edit', edit_project_path(project), :rel => "facebox" , :class => "action"%>
+        <%= link_to 'View', project, :class => "action" %>
+        <div class="clear"></div>
+        <div class="info">
+          <% if project.client_group.client_company %>
+            <div>Client Company:</div> <strong><%= project.client_group.client_company.name %></strong> <br />
+          <% end %>
+          <div>Client Group:</div> <strong><%= project.client_group.name %></strong> <br />
+          <div>Worker Group:</div> <strong><%= project.worker_group.name %></strong>
+        </div>
+        <p>
+          <%= project.description %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+  <div class="clear"></div>
+  <div class="pagination-wrapper">
+    <%= will_paginate @projects if @projects.size > 0 %>
+  </div>
+</div>

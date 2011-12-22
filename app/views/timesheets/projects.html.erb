@@ -1,0 +1,31 @@
+<div id="timesheets" class="grid_16">
+  <div class="pagination-wrapper">
+    <%= will_paginate @projects if @projects.size > 0 %>
+  </div>
+  <div class="clear"></div>
+
+  <div id="projects">
+    <% @projects.each_with_index do |project,index| %>
+      <div class="project <%= "first" if index == 0 %>">
+        <h4>
+          <a href="<%= url_for(:controller => :timesheets, :action => :list_by_project, :project_id => project.id) %>">
+          <%= project.name %>
+          <% if project.client_group.client_company %>
+            (<%= project.client_group.client_company.name %>)
+          <% end %>
+          </a>
+        </h4>
+        <!--p>
+          Total Hours since last Invoice: 22
+        </p-->
+        <p>
+          Total Hours overall: <%= project.total_billed_hours %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+  <div class="clear"></div>
+  <div class="pagination-wrapper">
+    <%= will_paginate @projects if @projects.size > 0 %>
+  </div>
+</div>

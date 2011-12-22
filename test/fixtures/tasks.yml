@@ -1,0 +1,85 @@
+--- 
+tasks_001: 
+  status: assigned
+  start_date: "2009-02-26"
+  updated_at: 2009-02-26 07:37:42
+  project_id: "138701634"
+  estimated_hours: "4"
+  title: 
+  client_request_id: "1"
+  id: "1"
+  worker_id: "48158004"
+  due_date: "2009-02-28"
+  created_at: 2009-02-26 07:37:38
+tasks_002: 
+  status: assigned
+  start_date: "2009-02-26"
+  updated_at: 2009-02-26 08:07:44
+  project_id: "138701634"
+  estimated_hours: "4"
+  title: 
+  client_request_id: "2"
+  id: "2"
+  worker_id: "48158003"
+  due_date: "2009-02-28"
+  created_at: 2009-02-26 08:07:27
+tasks_003: 
+  status: assigned
+  start_date: "2009-02-26"
+  updated_at: 2009-02-26 08:15:38
+  project_id: "138701634"
+  estimated_hours: "4"
+  title: 
+  client_request_id: "3"
+  id: "3"
+  worker_id: "48158004"
+  due_date: "2009-02-28"
+  created_at: 2009-02-26 08:15:30
+tasks_004: 
+  status: verified
+  start_date: "2009-02-22"
+  updated_at: 2009-02-26 09:28:46
+  project_id: "138701634"
+  estimated_hours: "4"
+  title: 
+  client_request_id: "4"
+  id: "4"
+  worker_id: "48158004"
+  due_date: "2009-03-06"
+  created_at: 2009-02-26 09:28:36
+tasks_005: 
+  status: assigned
+  start_date: "2009-02-07"
+  updated_at: 2009-02-26 11:43:48
+  project_id: "138701634"
+  estimated_hours: "4"
+  title: 
+  client_request_id: "5"
+  id: "5"
+  worker_id: "48158004"
+  due_date: "2009-03-07"
+  created_at: 2009-02-26 11:43:39
+tasks_006: 
+  status: assigned
+  start_date: "2009-03-16"
+  updated_at: 2009-03-25 14:38:38
+  project_id: "138701634"
+  estimated_hours: "4"
+  title: 
+  client_request_id: "6"
+  id: "6"
+  worker_id: "48158004"
+  due_date: "2009-03-28"
+  created_at: 2009-03-16 08:28:06
+tasks_007: 
+  status: assigned
+  start_date: "2009-03-07"
+  updated_at: 2009-03-25 14:37:21
+  project_id: "138701634"
+  estimated_hours: "4"
+  title: 
+  client_request_id: "7"
+  id: "7"
+  worker_id: "48158003"
+  due_date: "2009-03-28"
+  created_at: 2009-03-16 08:30:34

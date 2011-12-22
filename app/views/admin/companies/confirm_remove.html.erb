@@ -1,0 +1,8 @@
+<div id="admin" class="grid_16">
+<span style="color: red"><%= flash[:error] %>&nbsp;</span>
+<h1> Confirm company removal</h1>
+<% if @company %>
+    Are you sure you want to remove the company named "<%= @company.name %>"?<br/>
+    <%= link_to 'Remove', @company.admin_company_path, :method => :delete %>
+<% end %>
+</div>

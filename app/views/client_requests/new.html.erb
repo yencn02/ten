@@ -1,0 +1,36 @@
+<%= javascript_include_tag "tiny_mce/tiny_mce" %>
+<%= javascript_include_tag "tiny_editor" %>
+
+<%= javascript_include_tag "jquery.MultiFile" %>
+<div id="client_request" class="grid_16">
+<% if @client_request.nil? %>  
+  <% Project.find_by_account(@current_account).each do |project| %>
+    <%= link_to project.name, client_request_new_path(:id => project.id) %><br/>
+  <% end %>
+<% else %>
+  <%= error_messages_for :client_request, :attached_file %>
+  <h3>Create a new client request </h3>
+  <p><label>Project name: </label> <%= @project.name %></p>
+
+  <%= form_for @client_request, :url => { :controller => "client_requests", :action => "create" }, :html => {:multipart => true} do |f| -%>
+    <p><%= f.label "title" %><br/>
+    <%= f.text_field :title%></p>
+    <p><%= f.label "description" %><br/>
+      <%= f.text_area :description %>
+    </p><br/>
+    <p>
+      <%= f.label "priority" %>
+      <%= f.select :priority, ClientRequest::get_priority_list %>
+    </p>
+    <p><%=hidden_field_tag 'client_request[milestone_id]', @project.milestones.first.id %></p><br/>
+    <p>
+      <%= label_tag "attached_files", "File" %>
+      <input id="attached_files" name="attach_files[0][file]" type="file" class="multi"/>
+    </p>
+    <br/>
+    <p><%= f.submit "Request" %></p>
+    <%= set_focus_to :client_request, :title %>
+    <%= set_focus_to :client_request, :title %>
+  <% end -%>
+<% end %>
+</div>

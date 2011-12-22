@@ -1,0 +1,10 @@
+Hi all,
+<br/><br/>
+<%= @message.sender.name %> sent a comment on task <em><strong><%= @message.task.title%></strong></em> from <%= HostUrl %> site.
+<br/><br/>
+<%= raw @message.body%>
+<br/>
+To view more messages please <a href="http://<%= HostUrl %>/project/<%= @message.task.project_id%>/tasks/<%=@message.task.id%>/status/<%=@message.task.status%>">click here:</a>
+<br/><br/><br/>
+Thanks,<br/>
+ <%= @message.sender.name %>

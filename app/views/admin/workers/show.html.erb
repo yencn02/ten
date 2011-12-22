@@ -1,0 +1,58 @@
+<div id="admin" class="grid_16">
+  <h1>Worker Details</h1>
+  <span style="color: green"><%= flash[:notice] %>&nbsp;</span>
+  <% none_displayed_columns = ["id", "crypted_password", "salt", "remember_token", "remember_token_expires_at", "type", "activity"] %>
+  <% Worker.column_names.each{|column| %>
+    <% if !none_displayed_columns.include?(column) %>
+      <p>
+
+        <% if column == "enabled" %>
+          <b>Status</b>: <%= @worker[column] == true ? "Active" : "Inactive" %>
+        <% else %>
+          <b><%= column.gsub("_", " ").camelize %></b>: <%= raw strip_format_font(@worker[column]) %>
+        <% end %>
+      </p>
+    <% end %>
+  <% } %>
+<%#= link_to "Edit", url_for(:controller => "admin/workers", :action => "edit", :id => @worker.id) %>
+  <% if @worker.worker_groups.size > 0 %>
+    <h2>This worker joined the following groups:</h2>
+    <table width="100%">
+      <% none_displayed_columns = ["id"] %>
+      <tr>
+        <% WorkerGroup.column_names.each{|column| %>
+          <% if !none_displayed_columns.include?(column) %>
+            <td>
+              <b>
+                <% if column == "company_id" %>
+                  Company
+                <% else %>
+                  <%= column.gsub("_", " ").camelize %>
+                <% end %>
+              </b>
+            </td>
+          <% end %>
+        <% } %>
+      </tr>
+      <% @worker.worker_groups.each{|group| %>
+        <tr>
+          <% WorkerGroup.column_names.each{|column| %>
+            <% if !none_displayed_columns.include?(column) %>
+              <td>
+                <% if column == "name" %>
+                  <%= link_to group[column], group.admin_worker_group_path %>
+                <% elsif column == "company_id" %>
+                  <%= group.company.name if group.company%>
+                <% else %>
+                  <%= raw group[column] %>
+                <% end %>
+              </td>
+            <% end %>
+          <% } %>
+        </tr>
+      <% } %>
+    </table>
+  <% else %>
+    <h2>This worker didn't join into any groups.</h2>
+  <% end %>
+</div>

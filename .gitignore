@@ -1,0 +1,13 @@
+log/*.log
+tmp/**/*
+db/sphinx
+public/attached_files/**
+
+doc/api
+doc/app
+
+nbproject
+coverage/*
+
+public/stylesheets/base.css
+

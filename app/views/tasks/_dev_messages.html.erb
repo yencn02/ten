@@ -1,0 +1,31 @@
+<% @dev_msg.each do |message| %>
+  <div class="message" id="newdev<%= message.id %>">
+    <div class="header">
+      <div class="sender"><%= message.sender.name %></div>
+      <div class="body">        
+        <p><%= raw truncate(strip_html(message.title), :length => 60) %></p>
+      </div>
+      <div class="date"><%= time_ago_in_words(message.created_at) %></div>
+      <div class="clear"></div>
+    </div>
+    <div class="content" style="display: none;">
+      <div class="body"><%= raw strip_format_font(message.body) %></div>
+      <div class="clear"></div>
+      <div class="action">
+        <a href="#" class="reply">Reply</a>
+        <% if is_author(current_account, message) %>
+            <%= link_to "delete", delete_message_dev_path(:id => message.task.id, :message_id => message.id, :page => params[:page]), 
+              :confirm => "Are you sure?",
+              :remote => true             
+            %>
+        <% end %>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+<% end %>
+<% if @dev_msg.size > 0 %>
+  <div class="pagination-messsage">
+    <%= paginate @dev_msg, :remote => true, :params => {:controller => "tasks", :action => "developer_discussion", :id => @dev_msg.first.task_id} %>
+  </div>
+<% end %>

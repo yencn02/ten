@@ -1,0 +1,19 @@
+<div id="admin" class="grid_16">
+<h1>Group: <%= @worker_group.name %></h1>
+<h2>Add worker</h2>
+<span style="color: green"><%= flash[:notice] %>&nbsp;</span>
+<span style="color: green"><%= flash[:error] %>&nbsp;</span>
+<% if @worker_group %>
+  <% if @candidate_workers.size > 0 %>
+    Please select workers in list
+    <%= form_for :worker_group, :url => "/admin/worker_groups/update/#{@worker_group.id}", :method => "put" do |f| %>
+      <%= select_tag "accounts", options_for_select(@candidate_workers.map{|x| [x.name, x.id]}), :multiple => true%>
+      <br/>
+      <input type="hidden" name="action_type" value="add"/>
+      <%= f.submit "Add" %>
+    <% end %>
+  <% else %>
+    There are no workers to add.
+  <% end %>
+<% end %>
+</div>

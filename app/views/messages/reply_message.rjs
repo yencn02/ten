@@ -1,0 +1,35 @@
+# Resolve the ID suffix
+id_suffix = get_id_suffix(params)
+
+@message = Message.new
+@message.body = params["replyMessageBody#{id_suffix}"]
+@message.sender = current_account
+@message.task_id = params["taskIdReply#{id_suffix}"]
+@message.save
+
+if @message.save && @message.errors.empty?
+  notified_by_email = params["replyMessageNotified#{id_suffix}"]
+  unless notified_by_email.nil?
+    Mailer.deliver_client_request_message(@message) unless @message.client_request.nil?
+    Mailer.deliver_task_message(@message) unless @message.task.nil?
+  end
+
+  page["replyMessageError#{id_suffix}"].hide()
+  page["replyForm#{id_suffix}"].reset()
+  page["replyMessage#{id_suffix}"].hide()
+
+  page.call "AppMessage.hideStatus"
+  page.insert_html :bottom, "messageList#{id_suffix}", :partial => "messages/message",
+    :locals => {:message => @message, :id_suffix => id_suffix, :readonly => false}
+  page["message#{@message.id}"].scrollTo()
+  page.visual_effect :highlight, "message#{@message.id}", {:duration => 2}
+
+else
+  error_message_element_id = "replyMessageError#{id_suffix}"
+  page.replace error_message_element_id,
+    "#{error_messages_for :message, :id => error_message_element_id}"
+  page["replyMessageError#{id_suffix}"].show()
+  page["replyButton#{id_suffix}"].enable();
+  page["replyMessageBody#{id_suffix}"].focus();
+end
+

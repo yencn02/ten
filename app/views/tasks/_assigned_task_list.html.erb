@@ -1,0 +1,58 @@
+
+<table id="tasklist" style="width: 99%">
+  <tr>
+    <th>Assignments</th>
+    <th>Estimated</th>
+    <th>Billed</th>
+    <th>% Complete</th>
+    <th>Status</th>
+  </tr>
+  <%
+    total_estimated = 0
+    total_billed = 0
+  %>
+  <!-- Show tasks and progress. -->
+  <% task_list.each do |task| %>
+    <%
+      estimated = task.estimated_hours
+      billed = task.total_billed_hours #billed_hours
+      total_estimated += estimated
+      total_billed += billed
+      percent_complete = percent_complete(billed, estimated)
+      percent_pending = percent_pending(billed, estimated)
+    %>
+    <tr>
+      
+      <td><%= task.title -%></td>
+      <td><%= estimated %></td>
+      <td><%= billed %> </td>
+      <td><%= percent_complete %>&#37;</td>
+      <td>
+        <%= image_tag(Gchart.pie :size => "60x60",
+          :data => [percent_complete, percent_pending],
+          :bar_colors => ["6BB300", "FFCC00" ], :bar_colors => ["6BB300", "FFCC00"],
+          :chart_background => "EEEEEE",
+          :background => 'EEEEEE') %>
+      </td>
+    </tr>
+  <% end %>
+  <!-- Show total progress. -->
+  <%
+    unless total_estimated == 0
+      percent_total_complete = percent_complete(total_billed, total_estimated)
+      percent_total_pending = percent_pending(total_billed, total_estimated)
+    end
+  %>
+  <tr>
+    <td>&nbsp;</td>
+    <td><%= total_estimated %></td>
+    <td><%= total_billed %>&#37;</td>
+    <td><%= percent_total_complete %></td>
+    <td>
+      <%#= Gchart.pie :size => "75x50",
+        :data => [percent_total_complete, percent_total_pending],
+        :bar_colors => ["6BB300", "FFCC00" ],
+        :format => :image_tag, :border => 1 %>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <%= render :partial => "layouts/head" %>
+  </head>
+  <body class="login-page">
+    <div class="container_16">
+      <div id="login-page">
+        <div id="logo" class="box">
+          <h1 id="branding">
+            <img src="/images/endax-logo-on-white.png" alt="logo" /> TEN
+          </h1>
+        </div>
+        <div class="clear"></div>
+        <div class="box">
+          <div id="forms" class="block">
+            <%= form_tag session_path do -%>
+              <fieldset class="login">
+                <legend>Login</legend>
+                <% unless flash[:error].nil? %>
+                  <p class="error"><%= h flash[:error] %></p>
+                <% end %>
+                <p class="login-text">
+                  <%= label_tag 'login' %>
+                  <%= text_field_tag 'login', @login %>
+                </p>
+                <p class="login-text">
+                  <%= label_tag 'password' %>
+                  <%= password_field_tag 'password', nil %>
+                </p>
+                <p>
+                  <%= label_tag 'remember_me', 'Remember me' %>
+                  <%= check_box_tag 'remember_me', '1', @remember_me %>
+                </p>
+                <%= submit_tag 'Log in', :class => "confirm button" %>
+              </fieldset>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      
+      <%= render :partial => "layouts/footer" %>
+    </div>
+  </body>
+</html>

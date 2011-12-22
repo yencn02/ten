@@ -1,0 +1,24 @@
+<span id="projectList">
+  <ul id="bottom">
+    <% for project in projects %>
+      <%
+        status = "inactive"
+        if project.id == session[:active_project].to_i
+          status = "active"
+        end
+      %>
+      <li class="<%= status %>">
+        <%= link_to project.name, "/projects/show/#{project.id}" %>
+      </li>
+    <% end %>
+    <li>
+      <%= will_paginate projects,
+        :renderer => "MenuLinkRenderer",
+        :page_links => false,
+        :previous_label => "&laquo;",
+        :next_label => "&raquo;",
+        :params => {:controller => :projects, :action => :paginate, :type => "project"} %>
+    </li>
+    <li id="spinner"></li>
+  </ul>
+</span>

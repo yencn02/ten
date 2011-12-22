@@ -1,0 +1,41 @@
+<div id="developer-discussion" class="box">
+  <h2><a href="#" class="visible">developer discussion</a></h2>
+  <div class="message-list" id="messages_developer">
+    <div id="dev-message-list"> 
+      <% if @dev_msg.empty? %>
+        <div class="note">There are no messages.</div>
+      <% else %>
+        <%= render "dev_messages" %> 
+      <% end %>
+    </div>
+    <div class="new">
+      <a class="action" href="#" id="dev-discussion-link">New</a>
+    </div>
+    <div class="clear"></div>
+    <div class="form-wrapper" style="display: none;">      
+      <%= form_tag({:controller => :tasks, :action => :save_message_dev }, :remote => true) do %>
+        <fieldset>
+          <div id="newDevMessageError" class="errorExplanation" style="display:none;">
+          <h2>1 error prohibited this message from being saved</h2>
+          <p>There were problems with the following fields:</p>
+          <ul><li>Description can't be blank</li></ul>
+         </div>
+          <p>
+            <%= label :body, "message" %>            
+            <%= text_area("message", "body") %>
+          </p>
+          <p style="display:none;">
+            <%= label :task_id, "message" %>
+            <%= text_field("message", "task_id", :value => @task.id) %>
+          </p>
+          <p style="display:none;">
+            <%= label :sender_id, "message" %>
+            <%= text_field("message", "sender_id", :value => @current_account.id) %>
+          </p>          
+          <%= submit_tag "Create", :class => "register-button", :onclick => "tinyMCE.triggerSave(true,true);" %>
+          <input id="dev-discussion-cancel" type="button" class="register-button" value="Cancel" />
+        </fieldset>
+      <% end %>
+    </div>
+  </div>
+</div>

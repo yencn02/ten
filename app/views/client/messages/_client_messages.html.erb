@@ -1,0 +1,105 @@
+<div class="Applet">
+  <h2 class="appletTitle"><%= title %></h2>
+  <!-- Hide some components when there are no messages -->
+  <% display = messages.length == 0 ? "block" : "none" %>
+  <% show_hide = display == "block" ? "Hide" : "Show" %>
+  <div class="floatRight">
+    <a id="showHideMessages<%= id_suffix %>" href="#">Hide</a>
+  </div>
+  <div id="messages<%= id_suffix %>" style="display: block">
+    <!-- Message List -->
+    <div id="messageList<%= id_suffix %>" class="MessageList">
+      <!--
+        _message.html.erb partial is a copy of the following snippet. The purpose is to improve the view
+        performance. Rendering multiple partials is slower than rendering multiple records in one page.
+      -->
+      <!--
+        Make sure you copy the snippet inside the below each block to _message.html.erb partial if you
+        make any modification.
+      -->
+		
+      <% messages.each do |message| %>
+        <div id="message<%= message.id %>" class="reqMessage">
+          <div class="messageHeader">
+            <span class="senderName"><%= message.sender.name %></span>
+            <span class="messageSubject"><%=h message.body %></span>
+            <span class="sentAt"><%= time_ago_in_words(message.created_at, true).capitalize %>&nbsp; ago</span>
+          </div>
+          <div id="messageBody<%= message.id %>" style="display: none" class="messageBody">
+            <div id="messageContent<%= message.id %>">&nbsp;</div>
+            <%= hidden_field_tag "messageRepliedTo#{message.id}", word_wrap(message.body, Message::LINE_WIDTH) %>
+            <!-- Hide message actions (reply, delete) if the message pane is read-only -->
+            <% unless readonly %>
+              <div class="MessageAction">
+                <a href="#" onclick="Message.showReplyForm('<%= id_suffix %>', '<%= message.id %>')">Reply</a>
+                <% if message.sender == @current_account %>
+                  <a href="#" onclick="Message.destroy('<%= id_suffix %>', <%= message.id %>)">Delete</a>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <div id="noMessageText<%= id_suffix %>" class="reqMessage" style="display: <%= display %>">There are no messages.</div>
+    </div>
+
+    <!-- Reply Message Form -->
+    <div id="replyMessage<%= id_suffix %>" style="display: none" class="NewItemInlineForm">
+      <fieldset>
+      <div id="replyMessageError<%= id_suffix %>" style="display: none">&nbsp;</div>
+      <% form_tag :url => "/client/messages/reply",
+        :remote => true,
+        :loading => "Message.onReply();",
+        :html => {:id => "replyForm#{id_suffix}"} do %>
+        <p>
+		  <%= label_tag "replyMessageBody#{id_suffix}", "Content" %><br/>
+          <%= text_area_tag "replyMessageBody#{id_suffix}", nil,
+            :class => "flexibleTextArea", :rows => "8", :cols => "0" %><br/>
+          <%= check_box_tag "replyMessageNotified#{id_suffix}", "1", false %>
+          <%= label_tag "replyMessageNotified#{id_suffix}", "Notify by email" %>
+        </p>
+        <p>
+          <%= submit_tag "Reply", :id => "replyButton#{id_suffix}" %>
+          <input type="button" onclick="Message.discardReply('<%= id_suffix %>')" value="Discard" />
+        </p>
+        <div>
+            <%= hidden_field_tag "clientRequestIdReply#{id_suffix}", client_request.id %>        
+        </div>
+      <% end %>
+      </fieldset>
+    </div>
+
+    <% unless readonly %>
+    <div class="ClearBoth">
+      <a href="#" id="newMessageLink<%= id_suffix %>"        
+        style="display: block">New message</a>
+    </div>
+     <div><%= hidden_field_tag "msuffix_id", "#{id_suffix}"%></div>
+    <!-- New Message Form -->
+    <div id="newMessage<%= id_suffix %>" style="display: none" class="NewItemInlineForm">
+      <fieldset>
+        <div id="newMessageError<%= id_suffix %>" style="display: none">&nbsp;</div>
+        <% form_tag :url => "/client/messages/new",
+          :remote => true,
+          :html => {:id => "messageForm#{id_suffix}"},
+          :loading => "Message.onSave();" do %>
+          <p>
+					<%= label_tag "newMessageBody#{id_suffix}", "Content" %><br/>
+            <%= text_area_tag "newMessageBody#{id_suffix}", nil, 
+              :class => "flexibleTextArea", :rows => "5", :cols => "0" %><br/>
+            <%= check_box_tag "newMessageNotified#{id_suffix}", "1", false %>
+            <%= label_tag "newMessageNotified#{id_suffix}", "Notify by email" %>
+          </p>
+          <p>
+            <%= submit_tag "Post", :id => "saveMessageButton#{id_suffix}" %>
+            <input id="DiscardSaveMessage" type="button" value="Discard"/>
+          </p>
+          <div>
+            <%= hidden_field_tag "clientRequestId#{id_suffix}", client_request.id %>
+          </div>
+        <% end %>
+      </fieldset>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div id="changes" class="box">
+  <h2><a class="visible" href="#" style="background: url(/images/switch_minus.gif) no-repeat scroll 97% 50% rgb(51, 51, 51);">Changes</a></h2>
+  <div id="changes_request">
+    <div id="changeList">
+      <%= render :partial => "client/requests/change_list", :locals => {:changes => changes, :readonly => readonly} %>
+    </div>
+    <div id="newChange" style="display: none;">
+      <fieldset>
+        <div id="newChangeError" style="display: none">&nbsp;</div>
+         <%= form_tag client_request_change_path, :remote => true do %>
+          <p><%= label_tag :description, "Description" %><br/>
+            <%= text_area_tag "description", nil, :class => "flexibleTextArea", :rows => "5", :cols => "0" %></p>
+          <p>            
+            <input type="submit" name="save" value="Save"/>
+            <input type="button" id="changeDiscardButton" value="Discard" style="width: auto;"/>
+            <%= image_tag 'spinner.gif', :id => 'spinner', :style => 'display: none;'%>
+          </p>
+          <div><%= hidden_field_tag "client_request_id", client_request.id %></div>
+        <% end %>
+      </fieldset>
+    </div>
+  </div>
+</div>

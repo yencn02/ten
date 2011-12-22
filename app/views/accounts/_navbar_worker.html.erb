@@ -1,0 +1,41 @@
+<ul class="nav" id="bottom">
+  <%
+  status = ""
+  if selected_worker == "all"
+    status = "active"
+  end
+%>
+  <li>
+      <%= link_to "All", "/timesheets/list/worker/all", :class => status %>
+  </li>
+  <li class="paginate_prev">
+    <%= will_paginate workers,
+      :renderer => "RemoteLinkRenderer",
+      :remote => {:update => 'bottom'},
+      :page_links => false,
+      :previous_label => "&laquo;",
+      :next_label => "&raquo;",
+      :params => {:controller => :accounts, :action => :paginate_workers, :selected_worker => selected_worker} %>
+  </li>
+  <% for worker in workers %>
+    <%
+    status = ""
+    if worker.id == selected_worker.to_i
+      status = "active"
+    end
+  %>
+    <li>
+      <%= link_to worker.name, "/timesheets/list/worker/#{worker.id}", :class => status %>
+    </li>
+  <% end %>
+  <li class="paginate_next">
+    <%= will_paginate workers,
+      :renderer => "RemoteLinkRenderer",
+      :remote => {:update => 'bottom'},
+      :page_links => false,
+      :previous_label => "&laquo;",
+      :next_label => "&raquo;",
+      :params => {:controller => :accounts, :action => :paginate_workers, :selected_worker => selected_worker} %>
+  </li>
+  <li id="spinner"></li>
+</ul>

@@ -1,0 +1,44 @@
+# Application settings
+
+development:
+  # The number of seconds between BackgrounDRb method invocations
+  # 30 minutes
+  activity_periodic_timer: 1800
+  # Number of clients shown on the menu bar
+  menu_number_of_clients: 6
+  # Number of projects shown on the menu bar
+  menu_number_of_projects: 6
+  # Number of workers shown on the menu bar
+  menu_number_of_workers: 6
+  # Number of days from which project/client/worker activities are calculated
+  duration_for_activity_calculation: 7
+  near_milestone: 10
+
+test:
+  # 24 hours
+  activity_periodic_timer: 86400
+  menu_number_of_clients: 3
+  menu_number_of_projects: 5
+  menu_number_of_workers: 3
+  duration_for_activity_calculation: 30
+  duration_for_activity_calculation: 30
+  near_milestone: 10
+
+cucumber:
+  # 24 hours
+  activity_periodic_timer: 86400
+  menu_number_of_clients: 3
+  menu_number_of_projects: 5
+  menu_number_of_workers: 3
+  duration_for_activity_calculation: 30
+  duration_for_activity_calculation: 30
+  near_milestone: 10
+
+production:
+  # 24 hours
+  activity_periodic_timer: 86400
+  menu_number_of_clients: 6
+  menu_number_of_projects: 6
+  menu_number_of_workers: 6
+  duration_for_activity_calculation: 30
+  near_milestone: 10

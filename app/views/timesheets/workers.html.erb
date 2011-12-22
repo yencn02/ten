@@ -1,0 +1,29 @@
+<div id="timesheets" class="grid_16">
+  <div class="pagination-wrapper">
+    <%= will_paginate @workers if @workers.size > 0 %>
+  </div>
+  <div class="clear"></div>
+
+  <div id="workers">
+    <% @workers.each_with_index do |worker,index| %>
+      <div class="worker <%= "first" if index == 0 %>">
+        <h4><a href="<%= url_for(:controller => :timesheets, :action => :list_by_worker, :worker_id => worker.id) %>" ><%= worker.name %> (<%= worker.worker_groups.map{|x| x.name}.join(", ") %>)</a></h4>
+        <% worker.projects.each do |project| %>
+          <p>
+            Total Hours for Project <b><%= project.name %></b>: <%= worker.billed_hours_on_project(project.id) %>
+          </p>
+        <% end %>
+        <!--p>
+          Total Hours since last pay period: 23
+        </p-->
+        <p>
+          Total Hours overall: <%= worker.total_billed_hours %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+  <div class="clear"></div>
+  <div class="pagination-wrapper">
+    <%= will_paginate @workers if @workers.size > 0 %>
+  </div>
+</div>

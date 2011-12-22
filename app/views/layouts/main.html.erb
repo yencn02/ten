@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <%= stylesheet_link_tag 'style' %>
+		<title>10 - Project management</title>
+	</head>
+	<body>
+    <!-- ** Start Header Section -->
+    <div id="header">
+      <!-- ...include any background, shine, embellishment (pointy vines)... -->
+
+      <!-- Logo Section -->
+      <div id="logo">
+        <p>Welcome to 10</p> <!-- Usability purposes -->
+      </div>
+
+      <div id="search">
+        <form name="search" method="post" action="#">
+          <input type="text" id="tf" name="textfield" size="20" />
+        </form>
+      </div>
+    </div>
+    <!-- ** End Header Section	 -->
+
+    <!-- Menu Section -->
+    <div id="menu">
+      <div id="welcome">
+        Welcome <%= @current_account.login %>, <a href="/logout">Log Out</a>
+      </div>
+      <ul>
+        <li class="active"><a href="#">tasks</a></li>
+        <li><a href="#">requests</a></li>
+        <li><a href="#">messages</a></li>
+        <li><a href="#">chat</a></li>
+      </ul>
+        <br class="clear" />
+    </div>
+
+
+    <div id="hudmenu">
+      <!-- Include fancy hud-menu items -->
+      <ul>
+        <li class="active"><a href="#">All</a></li>
+        <%  find_projects_by_current_account.each do |project| %>
+          <li><a href="#"><%= project.name %></a></li>
+        <% end %>
+      </ul>
+      <br class="clear" />
+
+        <!-- User info, tasks and avatar -->
+      <div id="user_info"><%= @current_account.name %><br/>
+        <span class="task">You have 5 Incomplete task(s)
+        and 3 task(s) to be Verified</span>
+      </div>
+    </div>
+
+    <!-- Sub menu -->
+    <div id="submenu">
+      <!-- Extra links part of the actual context -->
+      <ul>
+        <li><a href="#">All</a></li>
+        <li><a href="#">Incomplete</a></li>
+        <li class="active"><a href="#">On Hold</a></li>
+        <li><a href="#">Complete</a></li>
+        <li><a href="#">Verified</a></li>
+      </ul>
+        <br class="clear" />
+
+      <p class="search">Search as you type:</p>
+      <div id="sub_search">
+          <form name="search" method="post" action="#">
+            <input type="text" id="sf" name="textfield" size="20" />
+          </form>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <%= yield %>
+
+    <!-- Footer -->
+    <div id="footer"><p>Project TEN &copy; 2008</p></div>
+	</body>
+</html>

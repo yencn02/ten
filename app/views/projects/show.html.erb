@@ -1,0 +1,17 @@
+<div class="grid_16">
+  <h1><%= @project.name %></h1>
+  <div class="project">
+    <div class="clear"></div>
+    <div class="info">
+      <div>
+        <%= @project.description %>
+      </div>
+      <% if @project.client_group.client_company %>
+        <div>Client Company: <strong><%= @project.client_group.client_company.name %></strong></div>
+      <% end %>
+      <div>Client Group: <strong><%= @project.client_group.name %></strong></div>
+      <div>Worker Group: <strong><%= @project.worker_group.name %></strong></div>
+      <div>Total Hours overall:  <strong><%= @project.total_billed_hours %></strong></div>
+    </div>
+  </div>
+</div>

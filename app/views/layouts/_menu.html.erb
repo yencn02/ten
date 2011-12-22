@@ -1,0 +1,72 @@
+<div class="clear"></div>
+<div class="grid_16" id="menu">
+  <ul class="nav" id="top">
+    <% @top_menu_items.each do |item| %>
+      <li>
+        <% if item[:status] == Menu::MenuStatus::ACTIVE %>
+          <%= link_to item[:label], item[:url], :class => "active" %>
+         
+        <% else %>
+          <%= link_to item[:label], item[:url]%>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <!-- END #top -->
+  <%
+    if @dynamic_bottom_menu_items && @middle_menu_items
+      @middle_menu_items.concat(@dynamic_bottom_menu_items)
+    end
+  %>
+  <% if @middle_menu_items %>
+    <div>
+      <ul class="nav" id="middle">
+        <% @middle_menu_items.each do |item| %>          
+          <li>
+            <% if item[:status] == Menu::MenuStatus::ACTIVE %>
+              <%= link_to item[:label], item[:url], :class => "active" %>
+            <% else %>
+              <%= link_to item[:label], item[:url]%>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% elsif @type == "task" %>
+    <%= render :partial => "projects/navbar_task",
+      :locals => {:projects => @projects, :page => @current_page} %>
+  <% elsif @type == "milestone" %>
+    <%= render :partial => "projects/navbar_milestone",
+      :locals => {:projects => @projects, :page => @current_page} %>
+  <% elsif @type == "request" %>
+    <%= render :partial => "projects/navbar_request", :locals => {:projects => @projects, :page => @current_page} %>
+  <% elsif @type == "client_request" %>
+    <%= render :partial => "projects/navbar_client_request", :locals => {:projects => @projects, :page => @current_page} %>
+  <% end %>
+
+  
+  <% if @bottom_menu_items %>
+    <ul class="nav" id="bottom">
+      <% @bottom_menu_items.each do |item| %>
+        <li>
+          <% if item[:rel] %>
+            <%= link_to item[:label], item[:url], :rel => item[:rel]%>
+          <% else %>
+            <% if item[:status] == Menu::MenuStatus::ACTIVE %>
+              <%= link_to item[:label], item[:url], :class => "active" %>
+            <% else %>
+              <%= link_to item[:label], item[:url]%>              
+            <% end %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% elsif @type == "projects" %>
+    <%= render :partial => "projects/navbar_timesheet",
+      :locals => {:projects => @projects, :page => @current_page} %>
+  <% elsif @type == "workers" %>
+    <%= render :partial => "accounts/navbar_worker",
+      :locals => {:workers => @workers, :selected_worker => @selected_worker, :page => @current_page} %>
+  <% end %>
+</div>
+

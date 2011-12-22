@@ -1,0 +1,54 @@
+<% if changes.empty? %>
+  <div id="noChangeMessage" class="note"><div>There has been no change.</div></div>
+  <div class="bottom-bar">
+    <% unless readonly%>
+      <div>
+        <a href="#" id="createChange" class="action" style="float: left; margin-top: 0.5em; padding: 0.2em 0.5em;">New</a>
+      </div>
+    <%end%>
+  </div>
+<% else %>
+  <!-- List of client_request changes -->
+  <div id="noChangeMessage" class="note" style="display: none">There has been no change.</div>
+  <% page = changes.current_page %>
+  <% changes.each do |change| %>
+    <div class="note" id="change<%= change.id -%>">
+      <div>
+        <h4><%= change.created_at.strftime("%b/%d/%Y ") %> (<%= time_ago_in_words(change.created_at, true) -%>&nbsp;ago)</h4>
+        <% unless readonly %>
+          <%= link_to "Delete", {:controller => "/client/requests", :action => "delete_change", :id => change.id, :rcp => page}, :confirm => "Are you sure?", :remote => true %>
+        <% end %>
+      </div>
+      <div class="clear"></div>
+      
+      <div>
+        <%@change = change
+          @change.description = raw strip_format_font(change.description)
+        %>
+        <% unless readonly%>          
+          <%= in_place_editor_field :change, :description, {:tag => "span"}, {:field_type => 'textarea', :textarea_cols => 90, :textarea_rows => 5, :url => "/client/requests/set_change_description/#{@change.id}"}%>
+        <% else %>
+        <span><%= @change.description %></span>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <div class="bottom-bar">
+    <div class="pagination-wrapper">
+      <%= will_paginate changes, :param_name => "rcp",
+        :renderer => "RemoteLinkRenderer",
+        :remote => {:update => 'changeList', :success => "ClientRequestChange.onSuccess();"},
+        :id => "paginateChanges",
+        :params => {:action => "paginate_changes", :controller => "/client/requests",
+        :rid => changes.first.client_request_id}
+    %>
+    </div>
+    <% unless readonly%>
+      <div>
+        <a href="#" id="createChange" class="action" style="float: left; margin-top: 0.5em; padding: 0.2em 0.5em;">New</a>
+      </div>
+    <%end%>
+  </div>
+  <img id="paginateChangeSpinner" src="/images/spinner.gif" alt="spinner" class="floatLeft" style="display: none;" />
+
+<% end %>

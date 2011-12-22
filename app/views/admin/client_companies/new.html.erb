@@ -1,0 +1,21 @@
+<%= javascript_include_tag "tiny_mce/tiny_mce" %>
+<%= javascript_include_tag "tiny_editor" %>
+<div id="admin" class="grid_16">
+<h1>New client company</h1>
+<%= form_for @company, :url => admin_client_companies_path do |f| %>
+  <%= f.error_messages %>  
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p><br/>
+  <p>
+    <%= f.submit "Create" %>
+    <%= link_to 'Back', admin_client_companies_path %>
+  </p>
+<% end %>
+
+</div>

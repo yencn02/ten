@@ -1,0 +1,42 @@
+
+<script type="text/javascript">
+  bkLib.onDomLoaded(function() {
+    new nicEditor({fullPanel : true}).panelInstance('upload_description');
+  });
+</script>
+
+<div class="subtask-header">Upload file of project : <%= @project.title %></div>
+
+<p style="color: green"><%= flash[:notice] %><% flash[:notice] = nil %></p>
+
+<% form_for(:upload, :url => { :action => "upload_file", :id => @id }, 
+                      :html => { :multipart => true }) do |f| -%>
+  <table border=0>    
+    <tr>
+      <td valign="top">Title</td>
+      <td valign="top">
+        <%= f.text_field :title, :size =>40 %>        
+      </td>
+    </tr>    
+    <tr>
+      <td valign="top">Description</td>
+      <td>
+        <%= f.text_area :description, :cols => 30, :rows => 5 %>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">File</td>
+      <td>
+        <%= f.file_field :uploaded_data %>
+      </td>
+    </tr>    
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+        <%= submit_tag 'Upload' %>
+      </td>
+    </tr>
+  </table>  
+<% end %>
+
+<%= link_to 'Back', {:action => 'index'} %> 

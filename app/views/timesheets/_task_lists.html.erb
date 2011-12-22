@@ -1,0 +1,96 @@
+<table>
+<% if tasks.nil? %>
+  <tr>
+    <td colspan="5">No &lt;status&gt; tasks</td>
+  </tr>
+<% else %>
+  <!-- 
+    Whenever the task entry below is updated, also update _task partial accordingly.
+  -->
+  <% tasks.each do |task| %>
+  	<% openTask = "openTask" if task.status == Task::OPEN%>
+    <tr id="task<%= task.id %>" class="bottomBorder <%=openTask%>">
+      	<td class="Id"><%= task.id %></td>        
+				<td class="Clock">
+				<% if (task.worker != nil) and (task.worker.login == @current_account.login) and (task.total_billed_hours < task.estimated_hours) then %>
+					<a href="#"><img class="clock" src="/images/clock.png" alt="clock" /></a>
+						<% else %>
+						<span></span>                 
+					<% end %>
+			</td>
+				<td class="Title">
+				<div class="pointer"><%= link_to task.title, edit_task_path(task) %></div>
+				</td>
+				<td class="Login"><strong>
+				<% if (task.status == Task::OPEN)
+					 	if(@current_account.has_role?(Role::WORKER))
+				%>
+							<%= link_to "Volunteer", "/tasks/show_volunteer/#{task.id}" %>				
+				<%					 	
+					 	else
+				%>
+							<%= link_to "Unassigned", "/tasks/show_estimate/#{task.id}" %>								
+				<%					 	
+					 	end
+				%>
+				<% 
+				    else
+				%>
+					<%=task.worker.login%>
+				<% end%>
+				</strong></td>
+				<td class="Pie">
+				<input type="hidden" id="complete" value="<%=percent_complete(task.total_billed_hours, task.estimated_hours)%>"/>
+					<%= Gchart.pie :size => "50x50",
+						:data => [
+							percent_complete(task.total_billed_hours, task.estimated_hours),
+							percent_pending(task.total_billed_hours, task.estimated_hours)],
+						:bar_colors => ["6BB300", "FFCC00" ],
+						:format => :image_tag, :border => 1 %>
+				</td>
+    </tr>
+  <% end %>
+  <tr id="willPaginate">
+    <td colspan="5">
+      
+      <img id="paginateSpinner" src="/images/spinner.gif" alt="spinner" style="display: none" />
+    </td>
+  </tr>
+<% end %>
+
+<!--
+    This hidden timesheet entry from will be copied and pasted to the task for which the user wants
+    to fill out the working time.
+  -->
+<tr id="timesheetEntry" style="display: none">
+  <td colspan="5">
+    <fieldset>
+      <% form_tag :url => "/timesheets/create",
+        :remote => true,
+        :html => {:id => "timesheetEntryForm"},
+        :loading => "hideAllMessages(); $('infoMessage').update('Saving ...').show();",
+        :complete => "$('infoMessage').hide();" do %>
+        <div id="timesheetErrorMessage" style="display: none"></div>
+        <div id="descriptionCol">
+          <%= label_tag "description" %><br/>
+          <%= text_area_tag "description", nil, :size => "80x10", :class => "mceEditor" %>
+        </div>
+        <div id="billedHourCol">
+          <%= label_tag "billedHour", "Billed hours" %><br/>
+          <%= text_field_tag "billedHour" %>
+          <p>
+            <%= check_box_tag "completed", "1", false %>
+            <%= label_tag "completed", "Task is complete:" %>
+          </p>
+          <p>
+            <%= hidden_field_tag "taskId" %>
+            <%= hidden_field_tag "page", params[:tp] %>
+            <%= submit_tag "Save", :id => "saveButton", :name => "saveButton" %>
+            <input id="cancelButton" type="button" value="Cancel" />
+          </p>
+        </div>
+      <% end %>
+    </fieldset>
+  </td>
+</tr>
+</table>

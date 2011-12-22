@@ -1,0 +1,56 @@
+<% if files.empty? %>
+  <div id="noFileMessage<%= id_suffix %>" class="note">
+    <div>There are no files.</div></div>
+  <div class="bottom-bar">
+    <% unless readonly%>
+      <div>
+        <a href="#" id="attachNew<%= id_suffix %>" class="action" style="float: left; margin-top: 0.5em; padding: 0.2em 0.5em;">New</a>
+      </div>
+    <%end%>
+  </div>
+<% else %>
+  <% page = files.current_page %>
+  <% files.each do |file| %>
+    <div class="note" id="file<%= file.id %>">
+      <div>
+        <h4><%= link_to file.file_file_name.to_s, file.file.url, :target => "_blank" %></h4>
+        <% unless readonly %>
+          <%= link_to "Delete", {:controller => "/attached_files", :action => "delete", :id => file.id, :afp => page, :idSuffix => id_suffix},
+            :confirm => "Are you sure?", :remote => true
+        %>
+        <% end %>
+      </div>
+      <div class="clear"></div>
+      <div><%= file.created_at.strftime("%b %d") %> (<%= time_ago_in_words(file.created_at, true) %>&nbsp;ago)</div>
+
+      <div>
+        <% @file = file
+        @file.description = raw strip_format_font(file.description)
+      %>
+        <% unless readonly%>
+          <%= in_place_editor_field :file, :description, {:tag => "span"}, {:url => "/attached_files/set_file_description/#{file.id}", :field_type => 'textarea', :textarea_rows => 4}%>
+        <% else %>
+          <span><%= @file.description %></span>
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+  <div class="bottom-bar">
+    <div class="pagination-wrapper">
+      <%= paginate files, :param_name => "afp", :remote => true,
+        :params => {
+        :controller => "/attached_files",
+        :action => "paginate",
+        :rid => files.first.client_request_id,
+        :tid => files.first.task_id,
+        :id_suffix => id_suffix}
+    %>
+    </div>
+    <% unless readonly%>
+      <div>
+        <a href="#" id="attachNew<%= id_suffix %>" class="action" style="float: left; margin-top: 0.5em; padding: 0.2em 0.5em;">New</a>
+      </div>
+    <%end%>
+  </div>
+<% end %>

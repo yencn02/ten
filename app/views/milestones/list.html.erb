@@ -1,0 +1,84 @@
+<style>
+  .red {
+ color: red;
+}
+.orange {
+ color: orange;
+}
+.green {
+ color: green;
+}
+
+.due_date{
+  padding-top: 20px;
+  padding-left: 20px;
+		float: left;
+		width: 120 px;
+		text-align: center;
+		font-size: 1.5em;
+		width: 50px;
+}
+
+ul#client_requests{
+ padding: 0px;
+ margin-left: 15px;
+}
+
+ul#milestones{
+ list-style-type: none;
+ padding: 0px;
+ margin: 0px;
+}
+
+
+li.milestone {
+ border-bottom: 1px black solid ;
+}
+li#current_date{
+ padding: 5px 0px 5px 25px;
+ border-bottom: 1px black solid ;
+}
+div.feature{
+  padding: 20px;
+  margin-left: 100px;
+		border-left: 1px red solid ;
+  min-height: 30px;
+}
+
+</style>
+<div class="grid_16">
+<h1><%= flash[:info] %></h1>
+
+<ul id="milestones">
+ <% show = false %>
+<% 
+  @milestones.each do |ms|
+    color = "green"
+	color = "red" if ms.due?
+	color = "orange" if ms.near?
+		
+	placement = ms.due?? "above": "below" 
+%>
+	<!--show the today bar-->
+	 <% if (!show and !ms.due?)  then
+			show = true						
+	 %>
+		  <li id="current_date" class="milestone"><%= "TODAY " + Date.today.strftime("%d %b %Y").upcase%></li> 
+  <% end %>
+
+  <li id="milestone<%=ms.id%>" class="milestone <%=placement%>">
+			<div class="due_date <%=color%>"><%=h ms.due_date.strftime("%d %b").upcase%></div>
+		<div class="feature">
+<%   if(@current_account.is_a? Client) then %>      
+			<%= render :partial=>"client_requests", :locals => {:client_requests => ms.client_requests}%>		
+<%					else%>
+   <%= render :partial=>"tasks", :locals => {:tasks => ms.get_task_list()}%>		
+<%   end %>
+			</div>
+		</li>
+<% end %>
+ <% if !show then %>
+   <li id="current_date" class="milestone"><%= "TODAY " + Date.today.strftime("%d %b %Y").upcase%></li>
+ <% end %>			
+ </ul>
+</div>

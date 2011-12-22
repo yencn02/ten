@@ -1,0 +1,15 @@
+## YAML Template.
+milestone_a:
+  title: Default milestone
+  due_date: <%= Date.today %>
+  project: project_a
+
+milestone_b:
+  title: Default milestone
+  due_date: <%= Date.today %>
+  project: project_b
+
+milestone_c:
+  title: Default milestone
+  due_date: <%= Date.today %>
+  project: project_c

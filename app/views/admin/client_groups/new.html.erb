@@ -1,0 +1,28 @@
+<%= javascript_include_tag "tiny_mce/tiny_mce" %>
+<%= javascript_include_tag "tiny_editor" %>
+<div id="admin" class="grid_16">
+<h1>New client group</h1>
+<%= form_for @client_group, :url => admin_client_groups_path do |f| %>
+  <%= f.error_messages %>  
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :client_company_id %><br/>
+    <%
+      companies = company_container(@companies)
+    %>
+    <%= f.select 'client_company_id', companies, {:selected => @client_group.client_company_id} %>
+  </p><br/>
+  <p>
+    <%= f.submit "Create" %>
+    <%= link_to 'Back', admin_client_groups_path %>
+  </p>
+<% end %>
+
+</div>

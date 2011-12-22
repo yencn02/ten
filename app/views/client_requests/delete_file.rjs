@@ -1,0 +1,27 @@
+file_id = params[:id]
+begin
+  # Obtain the client_request id which is required by paginate_by_client_request() method
+  file = AttachedFile.find(file_id)
+  client_request_id = file.client_request_id
+
+  AttachedFile.delete_client_request_file(file_id, current_account)
+
+  afp = params[:afp].to_i # attached file page
+  afp = 1 if afp <= 0
+  @attached_files = Array.new
+  # If there are no items at the current page, go back one page.
+  while @attached_files.empty? && afp > 0 do
+    @attached_files = AttachedFile.paginate_by_client_request(client_request_id, afp)
+    afp = afp - 1
+  end
+
+  # Hide the deleted file with Fade visual effect
+  page.visual_effect :fade, "file#{file_id}", :duration => 2
+  page.delay(2) do
+    page.replace_html "fileList",
+      :partial => "file_list", :locals => {:files => @attached_files}
+    page["appMessage"].hide()
+  end
+rescue Exception => ex
+  page.call "AppMessage.showError", h(ex.message)
+end

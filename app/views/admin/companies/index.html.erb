@@ -1,0 +1,43 @@
+<div id="admin" class="grid_16">
+  <h1>List of Companies</h1>
+  <% if @companies.size > 0 %>
+    <table width="100%">
+      <% none_displayed_columns = ["id"] %>
+      <thead>
+        <tr>
+          <% Company.column_names.each{|column| %>
+            <% if !none_displayed_columns.include?(column) %>
+              <th>
+                <% if column == "enabled" %>
+                  Status
+                <% else %>
+                  <%= column.gsub("_", " ").camelize %>
+                <% end %>
+              </th>
+            <% end %>
+          <% } %>
+        </tr>
+      </thead>
+      <% @companies.each{|company| %>
+        <tr>
+          <% Company.column_names.each{|column| %>
+            <% if !none_displayed_columns.include?(column) %>
+              <td>
+                <% if column == "name" %>
+                  <%= link_to company[column], company.admin_company_path %>
+                <% elsif column == "enabled" %>
+                  <%= company[column] == true ? "Active" : "Inactive" %>
+                <% else %>
+                  <%= raw strip_format_font(company[column]) %>
+                <% end %>
+              </td>
+            <% end %>
+          <% } %>
+        </tr>
+      <% } %>
+    </table>
+    <%= will_paginate @companies %>
+  <% else %>
+    There are no companies available.
+  <% end %>
+</div>

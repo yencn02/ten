@@ -1,0 +1,43 @@
+<div id="admin" class="grid_16">
+  <h1>List of Client Groups</h1>
+  <% if @client_groups.size > 0 %>
+    <table width="100%">
+      <% none_displayed_columns = ["id"] %>
+      <thead>
+        <tr>
+          <% ClientGroup.column_names.each{|column| %>
+            <% if !none_displayed_columns.include?(column) %>
+              <th>
+                <% if column == "client_company_id" %>
+                  Client Company
+                <% else %>
+                  <%= column.gsub("_", " ").camelize %>
+                <% end %>
+              </th>
+            <% end %>
+          <% } %>
+        </tr>
+      </thead>
+      <% @client_groups.each{|group| %>
+        <tr>
+          <% ClientGroup.column_names.each{|column| %>
+            <% if !none_displayed_columns.include?(column) %>
+              <td>
+                <% if column == "name" %>
+                  <%= link_to group[column], group.admin_client_group_path %>
+                <% elsif column == "client_company_id" %>
+                  <%= group.client_company.name if group.client_company%>
+                <% else %>
+                  <%= raw strip_format_font(group[column]) %>
+                <% end %>
+              </td>
+            <% end %>
+          <% } %>
+        </tr>
+      <% } %>
+    </table>
+    <%= will_paginate @client_groups %>
+  <% else %>
+    There are no client groups available.
+  <% end %>
+</div>

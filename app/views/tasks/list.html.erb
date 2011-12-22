@@ -1,0 +1,7 @@
+<div id="tasks-list" class="grid_16">
+  <% if @tasks.size > 0 %>
+    <%=render :partial => "task_list", :locals =>{:tasks => @tasks}%>
+  <% else %>
+  <div class="empty">Currently, there are no the <%=params[:status]%> tasks in this project.</div>
+  <% end %>
+</div>

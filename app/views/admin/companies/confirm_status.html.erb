@@ -1,0 +1,15 @@
+<div id="admin" class="grid_16">
+<span style="color: red"><%= flash[:error] %>&nbsp;</span>
+<% if @company.enabled == true %>
+  <h1> Confirm company deactivation</h1>
+  <% if @company %>
+    Warning: When you deactivate the company named "<%= @company.name %>", all users that belong to this company also will be disabled although they belong to any other companies.<br/>
+    Are you sure you want to deactivate the company named "<%= @company.name %>"?<br/>
+    <%= link_to "Deactivate", url_for(:controller => "admin/companies", :action => "set_status", :new_status => "deactivate", :id => params[:id]) %>
+  <% end %>
+<% else %>
+  <h1>Confirm company activation</h1>
+  Are you sure you want to activate the company named "<%= @company.name %>"?<br/>
+  <%= link_to "Activate", url_for(:controller => "admin/companies", :action => "set_status", :new_status => "activate", :id => params[:id]) %>
+<% end %>
+</div>

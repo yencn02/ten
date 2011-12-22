@@ -1,0 +1,36 @@
+<% if changes.empty? %>
+  <div id="noChangeMessage" class="reqMessage">Thank God, there has been no change.</div>
+<% else %>
+  <!-- List of client_request changes -->
+  <div id="noChangeMessage" class="reqMessage" style="display: none">Thank God, there has been no change.</div>
+  <% page = changes.current_page %>
+  <% changes.each do |change| %>
+    <div class="reqChange" id="change<%= change.id -%>">
+      <!--
+        This (http://wiki.rubyonrails.org/rails/pages/InPlaceEditing) explains the meaning of the code
+        which creates an instance variable.
+        @change = change
+      -->
+      <% @change = change %>
+      <b><%= change.created_at.strftime("%b/%d/%Y ") %><%= time_ago_in_words(change.created_at, true) -%>&nbsp;ago</b>
+      <%= link_to "Delete",
+        :url => {:action => "delete_change", :id => change.id, :rcp => page},
+        :remote => true,
+        :loading => "AppMessage.showStatus('Deleting...');",
+        :success => "AppMessage.hideStatus();"
+    %>
+      <a id="changeDescriptionEdit<%= change.id %>" href="#">Edit</a>
+      <br/>
+      <div class="edit_area" id="<%=change.id%>"><%=h change.description%></div>
+    </div>
+  <% end %>
+  <div class="floatLeft">
+    <%= will_paginate changes, :param_name => "rcp",
+      :id => "paginateChanges",
+      :params => {      
+      :action => "paginate_changes",
+      :rid => changes.first.client_request_id}
+  %>
+  </div>
+  <img id="paginateChangeSpinner" src="/images/spinner.gif" alt="spinner" class="floatLeft" style="display: none;" />
+<% end %>

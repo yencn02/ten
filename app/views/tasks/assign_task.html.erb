@@ -1,0 +1,58 @@
+<div id="tasks-show">
+  <div id="info" class="grid_16 box" style="padding: 0px;">
+    <div class="info-summary">
+      <span class="title"><%= @task.project.name %></span>
+    </div>
+    <div id ="taskEditPanel">
+      <div id="assign">        
+        <div><%=label_tag "Title: "%><%= @task.client_request.title %></div>
+        <div><%=label_tag "Description: "%><%= raw strip_format_font(@task.client_request.description) %></div>
+        <div class="left">
+          <% if @active_worker.nil? %>
+            No worker found. Assign some workers to the project group.
+          <% else %>
+            <div id="workerList">
+              <%= hidden_field_tag "activeWorkerId", @active_worker.id %>
+              <% @worker_list.each do |worker| %>
+                <% if worker.id == @active_worker.id %>
+                  <div id="workerText<%= worker.id %>">
+                    <%= radio_button_tag 'radio-worker', worker.id, true, :id => "radio_#{worker.id}", :disable => true %>
+                    <span style="color:#777777"><%= worker.name %></span>
+                  </div>
+                  <div id="workerLink<%= worker.id %>" style="display: none">
+                    <%= radio_button_tag 'radio-worker', worker.id, false, :id => "radio_#{worker.id}" %>
+                    <%= link_to worker.name,
+                      {:action => :show_task_list, :worker_id => worker.id}, :method => :post,
+                      :remote => true,
+                      :html => {:id => worker.id} %>
+                  </div>
+                <% else %>
+                  <div id="workerText<%= worker.id %>" style="display: none">
+                    <%= radio_button_tag 'radio-worker', worker.id, false, :id => "radio_#{worker.id}" %>
+                    <span style="color:#777777"><%= worker.name %></span>
+                  </div>
+                  <div id="workerLink<%= worker.id %>">
+                    <%= radio_button_tag 'radio-worker', worker.id, false, :id => "radio_#{worker.id}" %>
+                    <%= link_to worker.name,
+                      {:action => :show_task_list, :worker_id => worker.id}, :method => :post,
+                      :remote => true,
+                      :html => {:id => worker.id} %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+            <%= form_tag "/tasks/assign" do %>
+              <%= hidden_field_tag "task_id", @task.id %>
+              <%= hidden_field_tag "worker_id", @active_worker.id %>           
+              <div class="assign-button"><%= submit_tag "Assign" %> </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="right">
+          <%= render :partial => "assigned_task_list", :locals => {:task_list => @active_task_list} %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

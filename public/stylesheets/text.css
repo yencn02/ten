@@ -1,0 +1,141 @@
+/*
+	960 Grid System ~ Text CSS.
+	Learn more ~ http://960.gs/
+
+	Licensed under GPL and MIT.
+*/
+
+/* =Basic HTML
+--------------------------------------------------------------------------------*/
+
+body {
+	font: 12px Arial, Helvetica, sans-serif;
+}
+
+a:focus
+{
+	outline: 1px dotted invert;
+}
+
+hr
+{
+	border-color: #ccc;
+	border-style: solid;
+	border-width: 1px 0 0;
+	clear: both;
+	height: 0;
+}
+
+/* =Headings
+--------------------------------------------------------------------------------*/
+
+h1
+{
+	font-size: 25px;
+}
+
+h2
+{
+	font-size: 23px;
+}
+
+h3
+{
+	font-size: 21px;
+}
+
+h4
+{
+	font-size: 19px;
+}
+
+h5
+{
+	font-size: 17px;
+}
+
+h6
+{
+	font-size: 15px;
+}
+
+/* =Spacing
+--------------------------------------------------------------------------------*/
+
+ol
+{
+	list-style: decimal;
+}
+
+ul
+{
+	list-style: square;
+}
+
+li
+{
+	margin-left: 30px;
+}
+
+p,
+dl,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+ul,
+pre,
+table,
+address,
+fieldset
+{
+	margin-bottom: 20px;
+}
+
+.good {
+  color: #fff;
+  font-weight: bold;
+  background: #00b9eb;
+}
+
+.bad {
+  color: #fff;
+  font-weight: bold;
+  background-color: #E01C44;
+}
+
+#errorExplanation {
+  padding: 4px 8px 8px;
+  color: #fff;
+  background-color: #E01C44 !important;
+    margin-bottom: 1em;
+}
+
+#errorExplanation h2 {
+  font-size: 16px !important;
+  background-color: #E01C44 !important;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#errorExplanation h2, #errorExplanation ul, #errorExplanation p {
+  padding: 0;
+  margin: 0;
+}
+
+a.action {
+  padding: 0.20em 0.5em;
+  border: 1px solid #bbb;
+  float: right;
+}
+
+a.action:hover {
+  color: #fff;
+  background: #E01C44;
+  text-decoration: none;
+  border: 1px solid #E01C44;
+}

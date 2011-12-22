@@ -1,0 +1,16 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>
+  <%= defined?(@page_title) ? "10 - #{@page_title}" : "10" %>
+</title>
+
+<%= stylesheet_link_tag "reset", "text", "grid", "layout", "nav", "custom", :cache => "base" %>
+<!--[if IE 6]><%= stylesheet_link_tag "ie6" %><![endif]-->
+<!--[if IE 7]><%= stylesheet_link_tag "ie" %><![endif]-->
+<link rel="icon" href="/images/favicon.ico" type="image/x-con" />
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-con" />
+<%= yield :stylesheet %>
+<%= javascript_include_tag "jquery", "jquery-ui", "jrails", "jquery.inplace.pack", "jquery-fluid16", "application", "rails" %>
+<%= csrf_meta_tag %>
+<%= javascript_auto_include_tags %>
+
+<%= yield :javascript %>

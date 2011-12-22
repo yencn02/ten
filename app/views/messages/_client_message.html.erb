@@ -1,0 +1,27 @@
+<!--
+  This partial which is a partial copy of app/views//messages/_message_list.html is used by RJS
+  templates to insert a new message to the message list. Modification to the original partial should
+  also be applied to this partial.
+-->
+<div id="message<%= message.id %>" class="reqMessage">
+  <div class="messageHeader">
+    <span class="senderName"><%= message.sender.name %></span>
+    <span class="messageSubject"><%= truncate(message.body, :length => 45) %></span>
+    <span class="sentAt">
+      <%= time_ago_in_words(message.created_at, true).capitalize %>&nbsp; ago
+    </span>
+  </div>
+  <div id="messageBody<%= message.id %>" style="display: none" class="messageBody">
+    <div id="messageContent<%= message.id %>">&nbsp;</div>
+    <%= hidden_field_tag "messageRepliedTo#{message.id}", word_wrap(message.body, Message::LINE_WIDTH) %>
+    <!-- Hide message actions (reply, delete) if the message pane is read-only -->
+    <% unless readonly %>
+      <div class="MessageAction">
+        <a href="#" onclick="Message.showReplyForm('<%= id_suffix %>', '<%= message.id %>')">Reply</a>
+        <% if message.sender == @current_account %>
+          <a href="#" onclick="Message.destroy('<%= id_suffix %>', <%= message.id %>)">Delete</a>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

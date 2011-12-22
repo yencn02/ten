@@ -1,0 +1,39 @@
+<div class="grid_16" id="message">  
+  <%=form_for :client_message_status, :url => {:controller => "/client/messages", :action => "update_status"} do |f|%>
+    <div class = "messageItem">
+      <p class="information"><%= flash[:information] %></p>
+      <table class="action">
+        <tr>
+          <td class="allMessage"><input type="checkbox" name="allMessages" id="all"/></td>
+          <td><input name="read" id="read" type="submit" value="Read"/>&nbsp;
+            <input name="unread" id="unread" type="submit" value="Unread"/>&nbsp;
+            <input type="submit" name="archive" id="archive" value="Archived"/>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <% @messages.each do |message|%>
+      <% prefix, project, cssClass = status_message(message, @current_account) %>
+      <div id="message_id_#{message.id}" class="messageItem <%=cssClass%>">
+        <table class="messageContent">
+          <tr>
+            <td  class="checkboxMessage" rowspan="2">
+              <%= check_box_tag("#{prefix}_ids[]", message.id, false, :class => "messageCheckedBox", :id => "client_#{message.id}") %>
+            </td>
+            <td class="desciption"><span class="sentAt">              
+                <%= time_ago_in_words(message.created_at, true).capitalize %>&nbsp; ago (<%= message.sender.name %>)
+              </span>
+            </td>
+            <td align="right" class="status"><%= message.client_message_statuses.find_by_account_id(@current_account.id).status %></td>
+            <td align="right"  class="project"><%= project %></td>
+          </tr>
+          <tr>
+            <td colspan="3">            
+              <%= link_to raw(strip_format_font(message.body)), :controller => :messages, :action => :read_message, :id => message.id, :type => prefix %>
+            </td>
+          </tr>
+        </table>
+      </div>
+    <%end%>
+  <%end #form_tag%> 
+</div>

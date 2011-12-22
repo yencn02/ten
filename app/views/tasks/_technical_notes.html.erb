@@ -1,0 +1,26 @@
+<div id="technical-notes" class="box">
+  <h2><a href="#" class="visible">technical notes</a></h2>
+  <div id="notes">
+    <div id="note_list">
+    <%= render :partial => "tasks/note_list", :locals => { :technical_notes => technical_notes, :task_id => task_id} %>
+  </div>
+  <div class="new">
+    <a id="add-tech-note" class="action" href="#" style="float: left; margin-bottom: 0.5em; padding: 0.2em 0.5em;">New</a>
+  </div>
+  <div class="clear"></div>
+  <div class="form-wrapper" style="display: none;">
+    <%= form_tag({ :controller => :tasks, :action => :add_note }, :complete => "clear_description_note();", :remote => true) do %>
+      <fieldset>
+        <div id="errorExplanation" style="display:none">&nbsp;</div>
+        <p>
+          <%= label_tag :description, "Description" %>
+          <%= text_area :technical_note, :description, :id => "Description"%>
+          <%= hidden_field(:technical_note, :task_id, :value => task_id)%>
+        </p>
+        <input type="submit" class="register-button" value="Create"  onclick = "tinyMCE.triggerSave(true,true);"/>
+        <input type="button" class="register-button" id="tech-note-cancel" value="Cancel"/>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+</div>

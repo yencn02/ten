@@ -1,0 +1,40 @@
+<div id="timesheets" class="grid_16">
+  <div class="clear"></div>
+  <h1 class="title">
+    <% if @worker %>
+      <%= @worker.name %> (<%= @worker.worker_groups.map{|x| x.name}.join(", ") %>)
+    <% else %>
+      All Workers
+    <% end %>
+  </h1>
+  <% if @tasks && @tasks.size > 0 %>
+  <div id="projects">
+    <% @tasks.each_with_index do |task,index| %>
+      
+        <%task.billable_time.each_with_index do |time, index1| %>
+        <div class="project <%= "first" if index == 0 and index1 == 0%>">
+        <h4>
+          <%= task.title %> (<%= task.project.name %>)
+        </h4>
+        <p>
+          Created at: <%= time.created_at.strftime("%a %B %d, %Y") %><br/>
+        </p>
+        <p>
+          <%= time.description %><br/>
+        </p>
+        <p>
+          Hours Billed: <%= time.billed_hour %>
+        </p>
+        </div>
+        <% end %>
+      
+    <% end %>
+  </div>
+  <div class="clear"></div>
+  <div class="pagination-wrapper">
+    <%= will_paginate @tasks if @tasks.size > 0 %>
+  </div>
+  <% else %>
+    Hours Billed: 0
+  <% end %>
+</div>

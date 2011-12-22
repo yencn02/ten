@@ -1,0 +1,29 @@
+@task = Task.find(params[:id])
+@current_task = @task.clone
+if (params[:task][:start_date]!="")
+  @task.start_date = Time.parse(params[:task][:start_date])
+end
+if (params[:task][:due_date]!="")
+  @task.due_date = Time.parse(params[:task][:due_date])
+end
+
+@task.worker_id = params[:worker_id]
+unless @task.worker_id.nil? or @task.status != Task::UNASSIGNED  
+  @task.assign
+  request = @task.client_request
+  request.start
+  request.save
+  Mailer.task_assigned(@task).deliver unless @task.worker_id.nil?
+end
+if @task.update_attributes(params[:task])
+  if @current_task.id != @task.id
+    Mailer.task_assigned(@task).deliver unless @task.worker_id.nil?
+  end
+  page.replace_html("info", :partial => "summary", :locals => {:task => @task})
+  page["#taskEditPanel"].hide()
+  page.call "submit.show_task_sumary"
+else
+  page.replace_html "msg",:text => @task.errors
+end
+
+

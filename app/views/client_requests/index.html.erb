@@ -1,0 +1,26 @@
+<div class="grid_16">
+  <% if @project %>
+    <h1>Project: <%= @project.name %></h1>
+  <% end %>
+  <table border="0">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Priority</th>
+        <th>State</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @client_requests.each do |client_request| %>
+        <tr request_id="<%=client_request.id%>">
+          <td><%= link_to client_request.title, :controller => "client_requests", :action => :show, :id => client_request.id %><br/></td>
+          <td><%= raw strip_format_font(client_request.description) %></td>
+          <td><%= ClientRequest::priority_text_for(client_request.priority) %></td>
+          <td><%= client_request.status%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @client_requests %>
+</div>

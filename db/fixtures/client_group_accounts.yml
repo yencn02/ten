@@ -1,0 +1,9 @@
+client_group_account1:
+  client_group: client_group
+  account: client_1
+client_group_account2:
+  client_group: client_group
+  account: client_2
+client_group_account3:
+  client_group: client_group
+  account: client_3

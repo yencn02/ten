@@ -1,0 +1,545 @@
+body {
+  position: relative;
+  margin: 0;
+  font-family: Verdana, sans-serif;
+  font-size: 12px;
+}
+
+.activeWorker {
+  font-weight: bold;
+}
+
+.AttachedFile {
+  border-top: 1px dotted;
+  padding-bottom: 5px;
+  clear: both
+}
+
+div.ClearBoth {
+  clear: both;
+}
+
+.disabled {
+  display: none;
+}
+
+.errorExplanation {
+  color: white;
+  background-color: red;
+  padding: 0px 10px;
+}
+
+.errorExplanation h2 {
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  font-weight: bold;
+  padding-top: 4px;
+}
+
+.errorExplanation ul {
+  margin: 0;
+  padding-bottom: 4px;
+}
+
+.errorExplanation p {
+  padding: 0;
+  margin: 0;
+}
+
+.errorMessage {
+  font-weight: bold;
+  color: white;
+  background-color: red;
+  padding: 0.25em 1em;
+}
+
+.flexibleTextArea {
+  width: 99%;
+}
+
+div.floatLeft {
+  float: left;
+  padding: 0 2px;
+}
+
+div.floatRight {
+  float: right;
+  padding: 0 2px;
+}
+
+.infoMessage {
+  font-weight: bold;
+  color: white;
+  background-color: blue;
+  padding: 0.25em 1em;
+}
+
+.InPlaceEditingError {
+  font-weight: normal;
+  font-size: 10px;
+  color: white;
+  background-color: red;
+  margin-top: 4px;
+  padding: 2px 4px;
+}
+
+.BoldText {
+  font-weight: bold;
+}
+
+.LeftColumn {
+  float: left;
+  width: 50%;
+}
+
+.LeftInnerColumn {
+  padding: 10px;
+  border: thin dashed gray;
+  margin-right: 3px;
+}
+
+.RightColumn {
+  float: right;
+  width: 50%;
+}
+
+.RightInnerColumn {
+  padding: 10px;
+  border: thin dashed gray;
+  margin-left: 3px;
+}
+
+.messageBody {
+  padding: 5px;
+  text-align: justify;
+}
+
+.next_page {
+  margin: 0 !important;
+}
+
+.prev_page {
+  margin: 0 !important;
+}
+
+.reqChange {
+  border-top: thin dotted;
+  padding-bottom: 5px;
+  clear: both;
+}
+
+/* client_requests/show.html.erb */
+.reqMessage {
+  border-top: thin solid;
+  padding-bottom: 5px;
+  clear: both;
+}
+
+.reqMessage .messageHeader {
+  cursor: pointer;
+}
+
+.reqMessage .messageHeader .senderName {
+  width: 18%;
+  float: left;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.reqMessage .messageHeader .messageSubject {
+  width: 60%;
+  float: left;
+}
+
+.reqMessage .messageHeader .sentAt {
+  width: 22%;
+  font-size: 9px;
+  color: gray;
+  font-weight: bold;
+}
+
+.reqMessage .MessageAction {
+  float: right;
+  padding-bottom: 10px;
+}
+
+#appMessageContainer {
+  height: 1em;
+  margin-top: 1em;
+}
+
+#appMessagePane {
+  text-align: center;
+}
+
+div#files, div#changes {
+  clear: both;
+}
+
+div#newChange {
+  margin-top: 10px;
+  padding-bottom: 5px;
+}
+
+div#newFile {
+  margin-top: 10px;
+  padding-bottom: 5px;
+}
+
+div#statusContainer {
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+
+div.Applet {
+  margin-bottom: 2em;
+  border-top: medium solid;
+}
+
+fieldset {
+  padding-right: 10px;
+}
+
+h3.appletTitle  {
+  float: left;
+  margin: 0;
+  padding-bottom: 0.5em;
+}
+
+h3#reqTitle {
+  margin: 0;
+}
+
+span#statusMessage {
+  padding: 0 0.5em 0.25em;
+  font-size: 11px;
+  font-weight: bold;
+  color: white;
+  background-color: orange;
+}
+
+#leftColumn {
+  float: left;
+  width: 45%;
+  border: 1px dashed;
+  padding: 0 10px 5px 10px;
+}
+
+#loading {
+  position: absolute;
+}
+
+#logoContainer {
+  padding: 10px 0 0 10px;
+}
+
+#mainContainer {
+  padding: 8px;
+}
+
+.NewMessageAnchor {
+  clear: both;
+  margin-bottom: 1em;
+}
+
+.NewItemInlineForm {
+  padding-top: 1em;
+  clear: both;
+}
+
+.MessageList {
+  padding-top: 5px;
+  clear: both;
+}
+
+
+/* Worker menu */
+#navbar {
+}
+
+#navbar ul {
+  margin: 1px;
+  padding: 0.2em 0;
+}
+
+#navbar #top {
+  padding-left: 1em;
+}
+
+#navbar ul li {
+  list-style: none;
+  display: inline;
+}
+
+#navbar #top {
+  background-color: black;
+}
+
+#navbar #top a {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Arial Black", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 0.5em;
+  padding: 0 0.5em;
+}
+
+#navbar #top #active a {
+  color: black;
+  background-color: white;
+}
+
+#navbar #top .active a {
+  color: black;
+  background-color: white;
+}
+
+#navbar #top a:hover {
+  background-color: gray;
+}
+
+#navbar #top .active a:hover {
+  background-color: white;
+}
+
+#navbar #middle {
+  padding-left: 2em;
+  background-color: gray;
+}
+
+#navbar #middle a {
+  color: white;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 16px;
+  margin-right: 1em;
+  padding: 0 0.5em;
+}
+
+#navbar #middle #active a {
+  color: black;
+  background-color: white;
+}
+
+#navbar #middle .active a {
+  color: black;
+  background-color: white;
+}
+
+#navbar #middle a:hover {
+  background-color: silver;
+}
+
+#navbar #bottom {
+  padding-left: 2em;
+  background-color: silver;
+}
+
+#navbar #bottom  a {
+  color: black;
+  text-decoration: none;
+  text-transform:uppercase;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 1em;
+  padding: 0 0.5em;
+}
+#navbar #bottom  span {
+  color: black;
+  text-decoration: none;
+  text-transform:uppercase;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 1em;
+  padding: 0 0.5em;
+  background-color: white;
+}
+
+#navbar #bottom #active a {
+  color: black;
+  background-color: white;
+}
+
+#navbar #bottom .active a {
+  color: black;
+  background-color: white;
+}
+
+#navbar #bottom a:hover {
+  background-color: white;
+}
+
+
+#navbar #bottom .newItem a {
+  color: white;
+  font-weight: bold;
+  margin-right: 2em;
+}
+
+#navbar #bottom .newItem a:hover {
+  background: black;
+}
+
+#navbar #bottom .newItemActive a {
+  color: white;
+  background-color: black;
+  font-weight: bold;
+  margin-right: 2em;
+}
+
+/* Client menu - BEGIN */
+#navBar {
+}
+
+#navBar ul {
+  margin: 1px;
+  padding: 0.2em 0;
+}
+
+#navBar .TopMenu {
+  padding-left: 1em;
+}
+
+#navBar ul li {
+  list-style: none;
+  display: inline;
+}
+
+#navBar .TopMenu {
+  background-color: black;
+}
+
+#navBar .TopMenu a {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Arial Black", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 0.5em;
+  padding: 0 0.5em;
+}
+
+#navBar .TopMenu .active a {
+  color: black;
+  background-color: white;
+}
+
+#navBar .TopMenu a:hover {
+  background-color: gray;
+}
+
+#navBar .TopMenu .active a:hover {
+  background-color: white;
+}
+
+#navBar .MiddleMenu {
+  padding-left: 2em;
+  background-color: gray;
+}
+
+#navBar .MiddleMenu a {
+  color: white;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 16px;
+  margin-right: 1em;
+  padding: 0 0.5em;
+}
+
+#navBar .MiddleMenu .active a {
+  color: black;
+  background-color: white;
+}
+
+#navBar .MiddleMenu a:hover {
+  background-color: silver;
+}
+
+#navBar .BottomMenu {
+  padding-left: 2em;
+  background-color: silver;
+}
+
+#navBar .BottomMenu  a {
+  color: black;
+  text-decoration: none;
+  text-transform:uppercase;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 1em;
+  padding: 0 0.5em;
+}
+
+#navBar .BottomMenu .active a {
+  color: black;
+  background-color: white;
+}
+
+#navBar .BottomMenu a:hover {
+  background-color: white;
+}
+
+
+#navBar .BottomMenu .newItem a {
+  color: white;
+  font-weight: bold;
+  margin-right: 2em;
+}
+
+#navBar .BottomMenu .newItem a:hover {
+  background: black;
+}
+
+#navBar .BottomMenu .newItemActive a {
+  color: white;
+  background-color: black;
+  font-weight: bold;
+  margin-right: 2em;
+}
+/* Client menu - END */
+
+#rightColumn {
+  float: left;
+  width: 45%;
+  border: 1px dashed;
+  padding: 0 10px 5px 10px;
+}
+
+#tasklist {
+  width: 800px;
+  border: 1px dashed;
+}
+
+#tasklist th {
+  text-align: left;
+}
+
+#taskEditPanel{
+ padding: 10px;
+ background-color: #cccccc;
+ margin: 10px 0 10 0;
+}
+
+#taskEditPanel div#info{
+  float: left; 
+}
+
+#taskEditPanel div#assignee{
+  min-height: 200px; margin-left: 350px; width: 300px;
+}
+
+/* accounts/show.html.erb */
+#workerList {
+  float:left;
+  width: 180px;
+  border:1px dashed;
+}

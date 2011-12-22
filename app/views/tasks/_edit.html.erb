@@ -1,0 +1,36 @@
+<div id ="taskEditPanel" style="display:none;">
+    <%= form_for(@task, :remote => true) do |f|%>
+    <div id="msg"><%= f.error_messages %></div>
+    <div id="info">
+      <p>
+        <%= f.label :title, "Title" %><br/>
+        <%= f.text_field :title%>
+      </p>      
+      <p>
+        <%= f.label :start_date %><br/>
+        <%= f.text_field :start_date, :class => "date-pick"%><br/>
+      </p>
+      <p>
+        <%= f.label :due_date %><br/>
+        <%= f.text_field :due_date, :class => "date-pick"%>
+      </p>
+      <p>
+        <%= f.text_field :estimated_hours, :size => 3%> <%= f.label :estimated_hours, "Estimated hours" %><br/>
+      </p>
+      <%= hidden_field_tag :id, task.id%>
+      <%= f.submit 'Save'%>
+      <a href="#" class="cancel">Cancel</a>
+    </div>
+    <div id="assignee">
+      <% task.project.worker_group.accounts.each do |acc|%>
+        <span>
+          <% check = (task.worker != nil and task.worker.id == acc.id)? true:false%>
+          <%= radio_button_tag("worker_id", acc.id, check, :id => acc.login) %>  <%= label_tag(acc.login, acc.login.capitalize) %>
+        </span>
+        <br/>
+<% end %>
+
+    
+    </div>
+  <% end %>
+</div>

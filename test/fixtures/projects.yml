@@ -1,0 +1,46 @@
+--- 
+projects_001: 
+  name: Project A
+  updated_at: 2009-03-25 13:24:36
+  activity: "2"
+  id: "138701634"
+  description: Description of project A
+  client_group_id: "92614885"
+  created_at: 2009-02-26 07:33:48
+  worker_group_id: "81528219"
+projects_002: 
+  name: Project B
+  updated_at: 2009-03-06 21:36:57
+  activity: "0"
+  id: "138701635"
+  description: Description of project B
+  client_group_id: "92614885"
+  created_at: 2009-02-26 07:33:48
+  worker_group_id: "81528219"
+projects_003: 
+  name: Project C
+  updated_at: 2009-03-06 21:36:57
+  activity: "0"
+  id: "138701636"
+  description: Description of project C
+  client_group_id: "92614885"
+  created_at: 2009-02-26 07:33:48
+  worker_group_id: "81528219"
+projects_004: 
+  name: Project D
+  updated_at: 2009-03-06 20:32:28
+  activity: "0"
+  id: "138701637"
+  description: Description of project D
+  client_group_id: "92614885"
+  created_at: 2009-02-26 07:33:48
+  worker_group_id: "81528219"
+projects_005: 
+  name: Project E
+  updated_at: 2009-03-06 20:32:28
+  activity: "0"
+  id: "138701638"
+  description: Description of project E
+  client_group_id: "92614885"
+  created_at: 2009-02-26 07:33:48
+  worker_group_id: "1"

@@ -1,0 +1,17 @@
+## YAML Template.
+admin_role:
+  name: admin
+
+manager_role:
+  name: manager
+
+lead_role:
+  name: leader
+
+worker_role:
+  name: worker
+
+client_role:
+  name: client
+
+

@@ -1,0 +1,44 @@
+<tr id="task<%= task.id %>">
+    <td><%= task.id %></td>
+    <td><%=ClientRequest::priority_text_for(task.client_request.priority) %></td>
+    <td><a  class="clock" href="#"><img src="/images/clock.png" alt="clock" /></a></td>
+    <td>
+      <%= link_to task.title, edit_task_path(task) %>
+      <div style="display: none" class="timesheet-entry">
+
+       <% form_tag :url => "/timesheets/create",
+        :remote => true,
+        :html => {:id => "timesheetEntryForm"},    
+        :loading => "TimesheetEntryForm.onSubmit();",
+        :success => "TimesheetEntryForm.onSuccess();" do %>
+        <div id="timesheetErrorMessage" style="display: none"></div>        
+        <div>          
+            <%= text_area_tag "description", nil, :size => "50x5", :id => "description#{task.id}" %>
+          </div>
+          <div>         
+            <label>Billed Hours:</label><br/>
+            <%= text_field_tag "billed_hour", nil, :id => "billed_hour#{task.id}", :class => "billed_hour" %><br/>
+              <% if task.status.eql?("assigned") %>
+                <%= check_box_tag "completed", "1", false, :id => "complete#{task.id}" %>
+                <label>Completed</label><br/>
+              <% end %>
+              <%= hidden_field_tag "task_id", task.id, :id => "task_id#{task.id}" %>           
+              <%= submit_tag "Save", :name => "Savebutton", :id => "Savebutton#{task.id}" %>
+              <input type="button" value="Cancel" class="cancel"/>
+              <%= image_tag 'spinner.gif', :class => 'spinner', :style => 'display: none;'%>          
+          </div>
+        <% end %>
+      </div>
+    </td>
+    <td>
+      <%= link_to task.worker.login if !task.worker.nil?%>          
+    </td>
+    <td>    
+      <%= Gchart.pie :size => "50x50",
+        :data => [
+          percent_complete(task.total_billed_hours, task.estimated_hours),
+          percent_pending(task.total_billed_hours, task.estimated_hours)],
+        :bar_colors => ["6BB300", "FFCC00" ],
+        :format => :image_tag, :border => 1 %>
+    </td>
+</tr>

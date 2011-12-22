@@ -1,0 +1,39 @@
+<div id="admin" class="grid_16">
+  <h1>List of Worker Groups</h1>
+  <table width="100%">
+    <% none_displayed_columns = ["id"] %>
+    <thead>
+      <tr>
+        <% WorkerGroup.column_names.each{|column| %>
+          <% if !none_displayed_columns.include?(column) %>
+            <th>
+              <% if column == "company_id" %>
+                Company
+              <% else %>
+                <%= column.gsub("_", " ").camelize %>
+              <% end %>
+            </th>
+          <% end %>
+        <% } %>
+      </tr>
+    </thead>
+    <% @worker_groups.each{|group| %>
+      <tr>
+        <% WorkerGroup.column_names.each{|column| %>
+          <% if !none_displayed_columns.include?(column) %>
+            <td>
+              <% if column == "name" %>
+                <%= link_to group[column], group.admin_worker_group_path %>
+              <% elsif column == "company_id" %>
+                <%= group.company.name if group.company%>
+              <% else %>
+                <%= raw strip_format_font(group[column]) %>
+              <% end %>
+            </td>
+          <% end %>
+        <% } %>
+      </tr>
+    <% } %>
+  </table>
+  <%= will_paginate @worker_groups %>
+</div>

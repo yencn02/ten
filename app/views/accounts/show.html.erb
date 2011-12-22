@@ -1,0 +1,18 @@
+<div id="admin" class="grid_16">
+   <h1>Worker Details</h1>
+  <span style="color: green"><%= flash[:notice] %>&nbsp;</span>
+  <% none_displayed_columns = ["id", "crypted_password", "salt", "remember_token", "remember_token_expires_at", "type", "activity"] %>
+  <% Worker.column_names.each{|column| %>
+    <% if !none_displayed_columns.include?(column) %>
+      <p>
+
+        <% if column == "enabled" %>
+          <b>Status</b>: <%= @worker[column] == true ? "Active" : "Inactive" %>
+        <% else %>
+          <b><%= column.gsub("_", " ").camelize %></b>: <%= raw @worker[column] %>
+        <% end %>
+      </p>
+    <% end %>
+  <% } %>
+  <div style="margin-top: 20px;"><%= link_to "Edit", edit_account_path(@current_account)%></div>
+</div>

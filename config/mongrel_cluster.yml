@@ -1,0 +1,10 @@
+---
+user: mongrel
+cwd: /var/rails_apps/nine/current
+log_file: log/mongrel.log
+port: "3000"
+environment: development
+group: mongrel
+address: 127.0.0.1
+pid_file: tmp/pids/mongrel.pid
+servers: 2

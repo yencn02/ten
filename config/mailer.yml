@@ -1,0 +1,37 @@
+# ActionMailer configuration
+---
+development:
+  :address: "smtp.somewhere.com"
+  :port: "25"
+  :domain: "somewhere.com"
+  :user_name: "somebody@somewhere.com"
+  :password: "s3cr31"
+  :authentication: :plain
+  :from: 10 Mailer <ten@endax.com>
+  
+test:
+  :address: "smtp.somewhere.com"
+  :port: "25"
+  :domain: "somewhere.com"
+  :user_name: "somebody@somewhere.com"
+  :password: "s3cr31"
+  :authentication: :plain
+  :from: 10 Mailer <ten@endax.com>
+
+cucumber:
+  :address: "smtp.somewhere.com"
+  :port: "25"
+  :domain: "somewhere.com"
+  :user_name: "somebody@somewhere.com"
+  :password: "s3cr31"
+  :authentication: :plain
+  :from: 10 Mailer <ten@endax.com>
+
+production:
+  :address: "smtp.somewhere.com"
+  :port: "25"
+  :domain: "somewhere.com"
+  :user_name: "somebody@somewhere.com"
+  :password: "s3cr31"
+  :authentication: :plain
+  :from: 10 Mailer <ten@endax.com>

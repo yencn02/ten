@@ -1,0 +1,26 @@
+<% if @technical_notes.empty?%>
+  <div class="note"><div>There are no technical notes included with this task.</div></div>
+<%else%>
+  <% @technical_notes.each do |note| %>
+    <div class="note" id="note<%= note.id %>">
+      <div>
+        <h4><%= time_ago_in_words(note.created_at, true) -%>&nbsp;ago</h4>
+        <% page = params[:page].to_i > 0 ? params[:page].to_i : 1
+           page = page - 1 if @technical_notes.size == 1 and page > 1
+        %>
+        <%= link_to "Delete", {:action => "delete_note", :id => note.id, :page => page}, :confirm => "Are you sure you want to delete?",  :remote => true %>
+      </div>
+      <div class="clear"></div>
+      
+      <div>
+        <% @note = note
+           @note.description = raw strip_format_font(note.description)
+        %>
+        <%= in_place_editor_field :note, :description, {:tag => "span"}, {:field_type => 'textarea', :textara_rows => 4, :textara_columns => 5}%>
+      </div>
+    </div>
+  <% end %>
+  <div class="pagination-wrapper">
+    <%= paginate @technical_notes, :remote => true, :params => {:action => "tech_note_paginate", :id => @task_id, :page => params[:page]}  %>
+  </div>
+<% end %>

@@ -1,0 +1,67 @@
+--- 
+client_requests_001: 
+  status: 
+  updated_at: 2009-02-26 07:36:45
+  title: "update_all(updates, conditions = nil, options = {}) "
+  priority: "6"
+  id: "1"
+  description: <p>Updates all records with details given if they match a set of conditions supplied, limits and order can also be supplied. This method constructs a single SQL UPDATE statement and sends it straight to the database. It does not instantiate the involved models and it does not trigger Active Record callbacks.</p>
+  created_at: 2009-02-26 07:36:45
+  milestone_id: "856883269"
+client_requests_002: 
+  status: 
+  updated_at: 2009-02-26 08:06:52
+  title: "toggle(attribute) "
+  priority: "8"
+  id: "2"
+  description: <p>Assigns to <tt>attribute</tt> the boolean opposite of <tt>attribute?</tt>. So if the predicate returns <tt>true</tt> the attribute will become <tt>false</tt>. This method toggles directly the underlying value without calling any setter. Returns <tt>self</tt>.</p>
+  created_at: 2009-02-26 08:06:52
+  milestone_id: "856883267"
+client_requests_003: 
+  status: 
+  updated_at: 2009-02-26 08:14:57
+  title: "seconds_since_midnight() "
+  priority: "4"
+  id: "3"
+  description: "<p>Seconds since midnight: Time.now.<a href=\"file:///home/hoabt/Documents/railsbrain/doc/index.html?a=M000999&amp;name=seconds_since_midnight\">seconds_since_midnight</a></p>"
+  created_at: 2009-02-26 08:14:57
+  milestone_id: "856883267"
+client_requests_004: 
+  status: 
+  updated_at: 2009-02-26 09:28:05
+  title: "tomorrow() "
+  priority: "1"
+  id: "4"
+  description: <p>Convenience method which returns a new Time representing the time 1 day since the instance time</p>
+  created_at: 2009-02-26 09:28:05
+  milestone_id: "856883268"
+client_requests_005: 
+  status: 
+  updated_at: 2009-02-26 11:43:22
+  title: "references( default = nil ) "
+  priority: "1"
+  id: "5"
+  description: |-
+    <p>Returns the references of this email (prior messages relating to this message) as an array of message ID strings. Useful when you are trying to thread an email.</p>
+    <p>If the references field does not exist, returns nil by default or you can pass in as the parameter for what you want the default value to be.</p>
+    <p>Example:</p>
+  created_at: 2009-02-26 11:43:22
+  milestone_id: "856883268"
+client_requests_006: 
+  status: 
+  updated_at: 2009-03-16 08:27:42
+  title: Change the world
+  priority: "6"
+  id: "6"
+  description: <p>Could you?</p>
+  created_at: 2009-03-16 08:27:42
+  milestone_id: "856883267"
+client_requests_007: 
+  status: 
+  updated_at: 2009-03-16 08:30:07
+  title: Upgrade to SQLyog Enterprise
+  priority: "8"
+  id: "7"
+  description: <p>SQLyog Community Edition</p>
+  created_at: 2009-03-16 08:30:07
+  milestone_id: "856883267"

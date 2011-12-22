@@ -1,0 +1,57 @@
+<div id="admin" class="grid_16">
+<h1>Client Details</h1>
+<span style="color: green"><%= flash[:notice] %>&nbsp;</span>
+<% none_displayed_columns = ["id", "crypted_password", "salt", "remember_token", "remember_token_expires_at", "type", "activity"] %>
+<% Client.column_names.each{|column| %>
+  <% if !none_displayed_columns.include?(column) %>
+    <p>
+
+      <% if column == "enabled" %>
+        <b>Status</b>: <%= @client[column] == true ? "Active" : "Inactive" %>
+      <% else %>
+        <b><%= column.gsub("_", " ").camelize %></b>: <%= raw strip_format_font(@client[column]) %>
+      <% end %>
+    </p>
+  <% end %>
+<% } %>
+<% if @client.client_groups.size > 0 %>
+  <h2>This client joined the following groups:</h2>
+  <table width="100%">
+    <% none_displayed_columns = ["id"] %>
+    <tr>
+      <% ClientGroup.column_names.each{|column| %>
+        <% if !none_displayed_columns.include?(column) %>
+          <td>
+            <b>
+              <% if column == "client_company_id" %>
+                Company
+              <% else %>
+                <%= column.gsub("_", " ").camelize %>
+              <% end %>
+            </b>
+          </td>
+        <% end %>
+      <% } %>
+    </tr>
+    <% @client.client_groups.each{|group| %>
+      <tr>
+        <% ClientGroup.column_names.each{|column| %>
+          <% if !none_displayed_columns.include?(column) %>
+            <td>
+              <% if column == "name" %>
+                <%= link_to group[column], group.admin_client_group_path %>
+              <% elsif column == "client_company_id" %>
+                <%= group.client_company.name if group.client_company%>
+              <% else %>
+                <%= raw strip_format_font(group[column]) %>
+              <% end %>
+            </td>
+          <% end %>
+        <% } %>
+      </tr>
+    <% } %>
+  </table>
+<% else %>
+  <h2>This client didn't join into any groups.</h2>
+<% end %>
+</div>

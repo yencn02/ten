@@ -1,0 +1,61 @@
+<div id="navbar">
+
+  <!-- Top Menu -->
+  <% unless top_menu_items.nil? %>
+    <ul id="top">
+      <% top_menu_items.each do |item| %>
+        <li class="<%= item[:status] %>">
+          <a href="<%= item[:url] %>"><%= item[:label] %> </a>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <!-- Middle Menu -->
+  <% unless middle_menu_items.nil? %>
+    <ul id="middle">
+      <% middle_menu_items.each do |item| %>
+        <li class="<%= item[:status] %>">
+          <a href="<%= item[:url] %>"><%= item[:label] %></a>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <% if @type == "task" %>
+      <%= render :partial => "projects/navbar_task",
+        :locals => {:projects => @projects, :page => @current_page} %>
+    <% elsif @type == "milestone" %>
+      <%= render :partial => "projects/navbar_milestone",
+        :locals => {:projects => @projects, :page => @current_page} %>
+    <% end %>
+  <% end %>
+
+  <!-- Bottom Menu -->
+  <% if bottom_menu_items != nil %>
+    <ul id="bottom">
+      <% bottom_menu_items.each do |item| %>
+        <li class="<%= item[:status] %>">
+          <% if item[:status] == Menu::MenuStatus::ACTIVE %>
+            <span><%= item[:label] %></span>
+          <% else %>
+            <%= link_to item[:label], item[:url]%>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% elsif @type == "project" %>
+    <%= render :partial => "projects/navbar_project",
+      :locals => {:projects => @projects, :page => @current_page} %>
+  <% elsif @type == "timesheet" %>
+    <%= render :partial => "projects/navbar_timesheet",
+      :locals => {:projects => @projects, :page => @current_page} %>
+  <!-- Show clients -->
+  <% elsif @clients != nil %>
+    <%= render :partial => "accounts/navbar_client",
+      :locals => {:clients => @clients, :selected_client => @selected_client, :page => @current_page} %>
+  <!-- Show workers -->
+  <% elsif @workers != nil %>
+    <%= render :partial => "accounts/navbar_worker",
+      :locals => {:workers => @workers, :selected_worker => @selected_worker, :page => @current_page} %>
+  <% end %>
+</div>

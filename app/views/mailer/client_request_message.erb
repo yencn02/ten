@@ -1,0 +1,12 @@
+Hi all,
+<br/><br/>
+<%= @message.sender.name %> sent a comment on request <em><strong><%= @message.client_request.title%></strong></em> from <%= HostUrl %> site.
+<br/><br/>
+<%= raw @message.body%>
+<br/>
+To view message details please <a href="http://<%= HostUrl %><%= @message.client_request.show_client_request_path%>">click here:</a>
+
+<br/><br/><br/>
+
+Thanks,<br/>
+<%= @message.sender.name %>

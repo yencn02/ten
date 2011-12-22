@@ -1,0 +1,16 @@
+<div id="admin" class="grid_16">
+<h1>Client company details</h1>
+<span style="color: green"><%= flash[:notice] %>&nbsp;</span>
+<% none_displayed_columns = ["id"] %>
+<% Company.column_names.each{|column| %>
+  <% if !none_displayed_columns.include?(column) %>
+    <p>
+      <% if column == "enabled" %>
+        <b>Status</b>: <%= @company[column] == true ? "Active" : "Inactive" %>
+      <% else %>
+        <b><%= column.gsub("_", " ").camelize %></b>: <%= raw strip_format_font(@company[column]) %>
+      <% end %>
+    </p>
+  <% end %>
+<% } %>
+</div>

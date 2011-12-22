@@ -1,0 +1,20 @@
+project_a:
+  name: Project A
+  description: Description of project A
+  client_group: client_group
+  worker_group: worker_group
+  status: active
+
+project_b:
+  name: Project B
+  description: Description of project B
+  client_group: client_group
+  worker_group: worker_group
+  status: active
+
+project_c:
+  name: Project C
+  description: Description of project C
+  client_group: client_group
+  worker_group: worker_group
+  status: active

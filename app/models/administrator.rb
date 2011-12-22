@@ -1,0 +1,3 @@
+class Administrator < Account
+
+end

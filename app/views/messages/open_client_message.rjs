@@ -1,0 +1,19 @@
+message = ClientMessage.find_by_id(params[:id])
+
+unless message.nil?
+=begin
+  The structure of a message is as followed
+  message
+    messageHeader
+    messaegBody
+      messageContent
+      messageAction
+=end
+  content_element = "messageContent#{message.id}"
+  page.replace_html content_element, simple_format(message.body)   
+  page.call "Message.showForm", message.id
+#  page["messageBody#{message.id}"].show()
+#  page["messageBody#{message.id}"].scroll()
+else 
+  page.call "AppMessage.showError", h("<Message id:#{params[:id]}> not found")
+end

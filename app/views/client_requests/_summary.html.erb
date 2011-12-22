@@ -1,0 +1,40 @@
+<div class="summary_title">
+<h2><%= h client_request.title -%></h2>
+<table>
+  <tbody>
+    <tr>
+      <td colspan="4">
+        <b>Description:</b> <%= raw strip_format_font(client_request.description) -%>
+      </td>
+    </tr>
+    <tr>
+      <th>Created at:</th>
+      <td><%= client_request.created_at.strftime("%b %d") %> (<%= time_ago_in_words(client_request.created_at) -%>&nbsp;ago)</td>
+      <th>Estimated:</th>
+      <td><%= client_request.total_estimated_hours -%> hour(s)</td>
+    </tr>
+    <tr>
+      <th>Milestone:</th>
+      <td><%= h client_request.milestone.title -%></td>
+      <th>Billed:</th>
+      <td><%= client_request.total_billed_hours -%> hour(s)</td>
+    </tr>
+    <tr>
+      <td colspan="4">
+          <%= form_for @client_request, :url => {:action => "update_state_and_priority"} do |f| %>
+            <%= f.label :priority, 'Priority:'%>
+            <%= f.select :priority, ClientRequest::get_priority_list %>
+            <%= f.label :status, 'State'%>
+            <% if @client_request.status.eql?("met") %>
+              <%= f.select :status, ClientRequest::STATUS %> &nbsp; &nbsp;
+            <%else%>
+              <%= f.select :status, ["select state","Invalid"] %> &nbsp; &nbsp;
+            <% end %>
+            <%= hidden_field_tag :id, client_request.id %>
+            <%= f.submit 'Update'%>
+          <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>

@@ -1,0 +1,766 @@
+body.login-page {
+  background: #fff;
+}
+
+#login-page {
+  padding: 8em 0 12em 0;
+  margin: auto;
+  width: 400px;
+}
+
+#login-page #logo {
+  background: none;
+  margin-bottom: 0;
+}
+
+#login-page #logo h1 {
+  font-weight: bold;
+  font-size: 300%;
+  padding-left: 0;
+  margin-bottom: 0.25em;
+}
+
+#login-page p.error {
+  padding: 0.25em 1em;
+  margin-right: 1em;
+  margin-left: 1em;
+  font-weight: bold;
+  color: #fff;
+  background-color: red;
+}
+
+#views-index {
+  margin: 0 2em;
+}
+
+
+/* tasks/list
+--------------------------------------------------------------------------------------------------*/
+#tasks-list table {
+
+border: 0;
+border-top: 0;
+}
+
+div.task-lists-content{
+  margin-top: 19px;
+  margin-bottom: -6px;
+}
+
+
+#tasks-list table .id {
+  width: 5%;
+}
+
+#tasks-list table .priority {
+  width: 5%;
+}
+
+#tasks-list table .name {
+  width: 65%;
+}
+
+#tasks-list table .assignee {
+  width: 10%;
+}
+
+#tasks-list table .status {
+  width: 10%;
+}
+
+#tasks-list table .clock {
+  width: 5%;
+}
+
+#tasks-list table form div {
+  float: left;
+  margin-right: 8px;
+}
+
+#tasks-list table .timesheet-entry {
+  margin-top: 4px;
+}
+
+#tasks-list table form input[type=checkbox] {
+  margin-bottom: 8px;  
+}
+
+#tasks-list table form input[type=text] {
+  margin-bottom: 4px;
+  width: 75px;
+}
+
+#tasks-list .pagination-wrapper {
+  float: right;
+}
+
+#tasks-list .mceEditor table {
+    margin: 0px 0;
+}
+
+/* tasks/show
+--------------------------------------------------------------------------------------------------*/
+
+
+
+#tasks-show table th {  
+  border-left: 1px solid #bbb;
+}
+
+#tasks-show .new {
+  margin-top: 0.75em;
+}
+
+#tasks-show .new a {
+  float: left;
+}
+
+#tasks-show h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+#tasks-show .form-wrapper {
+  margin-top: 0.75em;
+}
+
+#tasks-show .pagination-wrapper {
+  float: right;
+  margin-top: 0.75em;
+  margin-bottom: 16px;
+}
+
+#tasks-show .note {
+  border-bottom: 1px solid #bbb;
+  margin-top: 0.5em;
+  padding-bottom: 0.25em;
+}
+
+#tasks-show .note a.more {
+  text-decoration: none;
+  float: none;
+}
+
+#tasks-show .note h4 {
+  float: left;
+  font-size: 12px;
+}
+
+#tasks-show .note a {
+  float: right;
+}
+
+#tasks-show .files {
+  padding: 0 8px;
+}
+
+#tasks-show .message {
+  font-weight: normal;
+  padding: 0.5em 0 0.25em 0;
+  border-bottom: 1px solid #bbb;
+}
+
+#tasks-show .message .header:hover {
+  cursor: pointer;
+}
+
+#tasks-show .message .sender {
+  float: left;
+  width: 72px;
+  font-weight: bold;
+}
+
+#tasks-show .message .excerpt {
+  float: left;
+}
+
+#tasks-show .message .date {
+  float: right;
+  width: 80px;
+  font-weight: bold;
+  text-align: right;
+}
+
+#tasks-show .message .content {
+  margin: 4px 0;
+}
+
+#tasks-show .message .action {
+  float: right;
+  clear: both;
+  margin-bottom: 2px;
+}
+
+#tasks-show .message .action a {
+  padding-left: 6px;
+}
+
+#tasks-show .message-list {
+  margin-bottom: 12px;
+}
+
+#tasks-show .message-list form fieldset {
+  margin-bottom: 0px;
+}
+
+#tasks-show #message_body {
+  height: 100px;
+}
+
+.read_status a {
+    font-weight:  normal !important
+}
+
+#tasks-show .pagination-messsage {
+  padding-top: 15px;
+  text-align: right;
+}
+
+#tasks-show #client_message_body {
+  height: 100px;
+}
+
+#tasks-show #developer-discussion .body {
+    float: left;
+}
+
+#tasks-show #developer-discussion .header {
+    padding-top: 10px;
+}
+
+#tasks-show #client-discussion .body {
+    float: left;
+}
+
+#tasks-show #client-discussion .header {
+    padding-top: 10px;
+}
+
+
+/* projects/list
+--------------------------------------------------------------------------------------------------*/
+#projects-new {
+  width: 512px;
+}
+
+
+/* projects/list
+--------------------------------------------------------------------------------------------------*/
+#projects-list .pagination-wrapper {
+  float: right;
+}
+
+#projects-list #projects {
+  margin: 12px 0;
+  clear: both;
+}
+
+#projects-list #projects .project {
+  margin: 4px 0em;
+  padding: 4px 1em 0;
+  border-bottom: solid 1px #ccc;
+}
+#projects-list #projects .first {
+  border-top: solid 1px #ccc;
+}
+
+#projects-list #projects .project:hover {
+  background: #ddd;
+  cursor: pointer;
+}
+
+#projects-list #projects .project h4 {
+  float: left;
+}
+
+#projects-list #projects .project a {
+  margin-left: 0.5em;
+}
+
+#projects-list #projects .project .info {
+  clear: both;
+  margin-bottom: 0.25em;
+}
+
+#projects-list #projects .project .info br {
+  margin-bottom: 0.25em;
+}
+
+#projects-list #projects .project .info div {
+  float: left;
+  width: 100px;
+}
+
+/* timesheets/project/list
+--------------------------------------------------------------------------------------------------*/
+#timesheets .pagination-wrapper {
+  float: right;
+}
+
+#timesheets #projects {
+  margin: 12px 0;
+  clear: both;
+}
+
+#timesheets #projects .project {  
+  margin: 4px;
+  border-bottom: solid 1px #ccc;
+}
+#timesheets #projects .first {
+  margin: 4px;
+  border-top: solid 1px #ccc;
+}
+
+#timesheets #projects .project:hover {
+  background: #ddd;
+}
+#timesheets #projects .project a {
+  margin-left: 0px;
+}
+/* timesheets/workers/list
+--------------------------------------------------------------------------------------------------*/
+#timesheets .pagination-wrapper {
+  float: right;
+}
+
+#timesheets #workers {
+  margin: 12px 0;
+  clear: both;
+}
+#timesheets #workers .worker {
+  margin: 4px 0em;
+  padding: 4px 1em 0;
+  border-bottom: solid 1px #ccc;
+}
+#timesheets #workers .first {
+  border-top: solid 1px #ccc;
+}
+
+#timesheets #workers .worker:hover {
+  background: #ddd;
+}
+
+/* Messages
+--------------------------------------------------------------------------------------------------*/
+#app-message {
+  /*height: 3em;*/
+  padding-top: 1.5em;
+  text-align: center;
+}
+
+#message .message {
+  font-weight: bold;
+  padding: 0.35em 1em;
+}
+
+#message .messageItem{
+
+  padding: 5px;
+}
+
+#message .unread_status {
+  font-weight: bold;
+}
+
+#message .read_status {
+  font-weight: normal !important;
+}
+
+#message .archived_status {
+  font-weight: normal !important;
+}
+
+#message .archived_status a {
+    font-weight: normal !important;
+}
+
+#message .messageItem a{
+  text-decoration: none;
+}
+
+#message .messageItem a:link {
+  color: black;
+}
+#message .messageItem a:visited {
+  color: black;
+}
+#message .messageItem a:hover {
+  color: black;
+}
+#message .messageItem a:active {
+  color: black;
+}
+
+#message .information {
+    color: green;
+}
+
+#message .action {
+    width:100%;
+}
+
+#message .allMessage {
+    width:50px;
+}
+
+#message .messageContent {
+    width: 100%;
+}
+
+#message .checkboxMessage {
+    width:5%;
+  }
+
+  #message .desciption {
+      width: 65%;
+  }
+  
+  #message .status {
+      width: 15%;
+  }
+  
+  #message .project {
+      width: 15%;
+  }
+  
+  
+  
+a.dp-choose-date {
+  /*  float: left;*/
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 5px 3px 0;
+  display: block;
+  text-indent: -2000px;
+  overflow: hidden;
+  background: url(/images/calendar.gif) no-repeat;
+}
+a.dp-choose-date.dp-disabled {
+  background-position: 0 -20px;
+  cursor: default;
+}
+/* makes the input field shorter once the date picker code
+ * has run (to allow space for the calendar icon
+*/
+input.dp-applied {
+  float: left;
+}
+
+
+
+/* tasks/show
+--------------------------------------------------------------------------------------------------*/
+#tasks-show #info.box {
+  background: none;
+}
+
+#tasks-show #info h2 { 
+  text-transform: none;
+  font-size: 20px;
+}
+
+#tasks-show #info div.info-summary {
+   background: none repeat scroll 0 0 #333333;
+   padding: 3px 12px;
+  text-transform: none; 
+}
+
+#tasks-show #info h2 {
+  text-transform: none;
+  font-size: 20px;
+}
+#tasks-show #info {
+  padding: 10px;
+}
+
+#tasks-show #info span.title {   
+  color: #FFFFFF;  
+  font-size: 12pt;
+}
+
+#tasks-show #info span a {
+  color: #FFFFFF !important;
+  float: right;
+  margin-top: 5px;
+}
+
+div#assign{
+  background: none repeat scroll 0 0 #EEEEEE;
+  border: 1px solid #BBBBBB;  
+  overflow: hidden;
+  padding: 5px 5px 0px;  
+}
+div.assign-button{
+  margin: 5px 0px;
+}
+
+div.left {
+	width: 10%;
+	float: left;
+}
+
+div.right {
+	width: 80%;
+	float: right;
+}
+
+
+#taskEditPanel div#assignee {    
+  margin-top: 20px;
+}
+
+#taskEditPanel div#info {
+  float: left;
+}
+
+
+#tasks-show h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+#tasks-show .form-wrapper {
+  margin-top: 0.75em;
+}
+
+#tasks-show .pagination-wrapper {
+  float: right;
+  margin-top: 0.75em;
+  margin-bottom: 16px;
+}
+
+#tasks-show .note {
+  border-bottom: 1px solid #bbb;
+  margin-top: 0.5em;
+  padding-bottom: 0.25em;
+}
+
+#tasks-show .note a.more {
+  text-decoration: none;
+  float: none;
+}
+
+#tasks-show .note h4 {
+  float: left;
+  font-size: 12px;
+}
+
+#tasks-show .note a {
+  float: right;
+}
+
+#tasks-show .files {
+  padding: 0 8px;
+}
+
+
+
+#tasks-show #client_message_body {
+  height: 100px;
+}
+
+
+#app-message .message{
+  padding: 5px
+}
+/* #client-request-show
+--------------------------------------------------------------------------------------------------*/
+#client-request-show .summary_title h2{
+  background: none repeat scroll 0 0 #333333;
+  color: #FFFFFF;
+  font-size: 1em;
+  font-weight: normal;
+  margin: 0px 0px 0;
+  padding: 6px 12px;
+  text-transform: uppercase;
+}
+
+#client-request-show #info.box {
+  background: none;
+}
+
+#client-request-show #info h2 {
+  text-transform: none;
+  font-size: 20px;
+}
+
+#client-request-show table th {
+  width: 80px;
+  border-left: 1px solid #bbb;
+}
+
+#client-request-show .new {
+  margin-top: 0.75em;
+}
+
+#client-request-show .new a {
+  float: left;
+}
+
+#client-request-show h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+#client-request-show .form-wrapper {
+  margin-top: 0.75em;
+}
+
+#client-request-show .pagination-wrapper {
+  float: right;
+  margin-top: 0.75em;
+  margin-bottom: 16px;
+}
+
+#client-request-show .note {
+  border-bottom: 1px solid #bbb;
+  margin-top: 0.5em;
+  padding-bottom: 0.25em;
+}
+
+#client-request-show .note a.more {
+  text-decoration: none;
+  float: none;
+}
+
+#client-request-show .note h4 {
+  float: left;
+  font-size: 12px;
+}
+
+#client-request-show .note a {
+  float: right;
+}
+
+#client-request-show .files {
+  padding: 0 8px;
+}
+
+#client-request-show .message {
+  font-weight: normal;
+  padding: 0.5em 0 0.25em 0;
+  border-bottom: 1px solid #bbb;
+}
+
+#client-request-show .message .header:hover {
+  cursor: pointer;
+}
+
+#client-request-show .message .sender {
+  float: left;
+  width: 72px;
+  font-weight: bold;
+}
+
+#client-request-show .message .excerpt {
+  float: left;
+}
+
+#client-request-show .message .date {
+  float: right;
+  width: 100px;
+  text-align: right;
+  font-weight: bold;
+}
+
+#client-request-show .message .content {
+  margin: 4px 0;
+}
+
+#client-request-show .message .action {
+  float: right;
+  clear: both;
+  margin-bottom: 2px;
+}
+
+#client-request-show .message .action a {
+  padding-left: 6px;
+}
+
+#client-request-show .message-list {
+  margin-bottom: 12px;
+}
+
+#client-request-show .message-list form fieldset {
+  margin-bottom: 0px;
+}
+
+#client-request-show #message_body {
+  height: 100px;
+}
+
+#client-request-show .pagination-messsage {
+  padding-top: 15px;
+  text-align: right;
+}
+
+#client-request-show #client_message_body {
+  height: 100px;
+}
+
+.bottom-bar{
+  width: 100%;
+  height: 35px;
+}
+
+#client-request-show #newChange{
+  padding-top: 10px;
+}
+
+#client-request-show input{
+  width: auto;
+}
+
+#client-request-show .errorExplanation p {
+  margin-bottom: 0.25em;
+}
+#client-request-show .action{
+  float: left;
+  margin-top: 0.5em;
+  padding: 0.2em 0.5em;
+}
+#client-request-show #client-discussion .body {
+  float: left;
+}
+div.pagination {
+  float: right;
+}
+
+#tasks-list .empty{
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-bottom: 1px solid #BBBBBB;    
+    border-top: 1px solid #BBBBBB;
+    padding: 10px;
+    font-size: 10pt;
+    text-align: center
+}
+
+.errorExplanation {
+    background-color: #E01C44 !important;
+    color: #FFFFFF;
+    margin-bottom: 1em;
+    padding: 4px 4px 4px;
+}
+.errorExplanation h2{
+    margin: 0 0 0;
+    padding: 0 0 0;
+    background-color: #E01C44 !important;
+    font-weight: bold;
+    font-size: larger;
+}
+.errorExplanation ul,p{
+    margin-bottom: 0px;
+}
+
+#new_worker select{
+  width: 15%;
+}
+
+#new_client select{
+  width: 15%;
+}
+
+div table td{
+  color: #000000
+}

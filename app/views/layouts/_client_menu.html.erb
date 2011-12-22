@@ -1,0 +1,47 @@
+<div id="navBar">
+  <ul class="TopMenu">
+    <% @top_menu_items.each do |item| %>
+      <li class="<%= item[:status] %>">
+        <a href="<%= item[:url] %>"><%= item[:label] %> </a>
+      </li>
+    <% end %>
+  </ul>
+  
+  <% if @active_top_menu_item.eql?("Request") %>      
+    <ul id="projectMenu" class="MiddleMenu">
+      <%= render :partial => "client/shared/navbar_project",
+        :locals => {:projects => @projects} %>
+    </ul>  
+  <ul class="BottomMenu">   
+    <li class="newItem"><a href="<%=new_client_requests_path%>">New</a></li>
+    <li><a href="/client/requests/list/all">All</a></li>
+    <li><%=link_to "Extreme", :controller => "client/requests", :action => :priority_list, :id => 1 %></li>
+    <li><%=link_to "High", :controller => "client/requests", :action => :priority_list, :id => 2 %></li>
+    <li><%=link_to "Medium", :controller => "client/requests", :action => :priority_list, :id => 3 %></li>
+    <li><%=link_to "Low", :controller => "client/requests", :action => :priority_list, :id => 4 %></li>
+  </ul>
+  <% elsif @active_top_menu_item.eql?("Message") %>
+      <ul class="BottomMenu" id="bottom">
+      <% @bottom_menu_items.each do |item| %>
+        <li class="<%= item[:status] %>">
+          <a href="<%= item[:url] %>"><%= item[:label] %></a>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  
+  
+
+  <!--
+  <ul class="MiddleMenu">
+    <li><a>All</a></li>
+    <li><a>Project A</a></li>
+    <li><a>Project B</a></li>
+    <li><a>Project C</a></li>
+    <li><a>Project D</a></li>
+  </ul>
+ 
+
+  
+   -->
+</div>

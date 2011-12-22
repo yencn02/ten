@@ -1,0 +1,17 @@
+<% content_for :stylesheet do %>
+  <%= stylesheet_link_tag "views/messages" %>  
+<% end %>
+<h1><%= flash[:info] %></h1>
+<table id="messageList">
+  <tr><td>Task</td>
+    <td>Message</td>
+    <td>Status</td>
+  </tr>
+  <% @messages.each do |message|%>
+    <tr id="message<%=message.id%>">
+      <td id="task<%=message.task.id%>"><%=raw message.task.title%></td>
+      <td  id="message<%=message.id%>"><%= link_to message.title, message_path(message)%></td>
+      <td><%=h message.status %></td>
+    </tr>
+  <%end%>
+</table>

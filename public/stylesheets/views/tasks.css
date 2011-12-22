@@ -1,0 +1,81 @@
+#descriptionCol {
+  float: left;
+  width: auto;
+  padding: 5px;
+  border: 0px dashed;
+}
+
+#billedHourCol {
+  float: left;
+  width: auto;
+  padding: 5px;
+  border: 0px dashed;
+}
+
+#pagination {
+  float: right;
+  padding-left: 5px;
+}
+
+#subNav {
+  padding-bottom: 5px;
+}
+
+#taskList {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#taskList #willPaginate {
+  border: none;
+}
+
+#timesheetEntry td {
+  padding-bottom: 10px;
+}
+
+#willPaginate img {
+  float: right;
+  margin-left: 5px;
+}
+
+.bottomBorder td {
+  border-bottom: 2px solid;
+}
+
+.clock {
+  border: none;
+}
+
+td.Id {
+  text-align: center;
+  width: 5%;
+}
+
+td.Click {
+  width: 5%;
+}
+
+td.Title {
+  width: 70%;
+}
+
+td.Login {
+  width: 15%;
+}
+
+td.Pie {
+  width: 5%;
+}
+
+.pointer {
+  cursor: pointer;
+}
+#taskList a 
+{
+ text-decoration: none;
+}
+tr.openTask
+{
+ background-color: yellow;
+}

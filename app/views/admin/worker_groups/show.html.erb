@@ -1,0 +1,59 @@
+<div id="admin" class="grid_16">
+  <h1>Worker Group Details</h1>
+  <span style="color: green"><%= flash[:notice] %>&nbsp;</span>
+  <span style="color: green"><%= flash[:error] %>&nbsp;</span>
+  <% none_displayed_columns = ["id"] %>
+  <% WorkerGroup.column_names.each{|column| %>
+    <% if !none_displayed_columns.include?(column) %>
+      <p>
+
+        <% if column == "company_id" %>
+          <b>Company</b>: <%= @worker_group.company.name if @worker_group.company %>
+        <% else %>
+          <b><%= column.gsub("_", " ").camelize %></b>: <%= raw strip_format_font(@worker_group[column]) %>
+        <% end %>
+      </p>
+    <% end %>
+  <% } %>
+  <br/>
+  <% if @worker_group.accounts.size > 0 %>
+    <h2>List of workers in group:</h2>
+    <table width="100%">
+      <% none_displayed_columns = ["id", "crypted_password", "salt", "remember_token", "remember_token_expires_at", "type", "activity"] %>
+      <tr>
+        <% Worker.column_names.each{|column| %>
+          <% if !none_displayed_columns.include?(column) %>
+            <td>
+              <b>
+                <% if column == "enabled" %>
+                  Status
+                <% else %>
+                  <%= column.gsub("_", " ").camelize %>
+                <% end %>
+              </b>
+            </td>
+          <% end %>
+        <% } %>
+      </tr>
+      <% @worker_group.accounts.each{|worker| %>
+        <tr>
+          <% Worker.column_names.each{|column| %>
+            <% if !none_displayed_columns.include?(column) %>
+              <td>
+                <% if column == "name" %>
+                  <%= link_to worker[column], worker.admin_worker_path %>
+                <% elsif column == "enabled" %>
+                  <%= worker[column] == true ? "Active" : "Inactive" %>
+                <% else %>
+                  <%= raw strip_format_font(worker[column]) %>
+                <% end %>
+              </td>
+            <% end %>
+          <% } %>
+        </tr>
+      <% } %>
+    </table>
+  <% else %>
+    <h2>No workers joined into this group.</h2>
+  <% end %>
+</div>

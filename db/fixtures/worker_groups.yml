@@ -1,0 +1,7 @@
+# YAML Template.
+admin_group:
+  name: Administrator
+
+worker_group:
+  name: Worker Group1
+  company: worker_company

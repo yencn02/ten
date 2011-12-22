@@ -1,0 +1,19 @@
+<div id="admin" class="grid_16">
+  <h1>Group: <%= @worker_group.name %></h1>
+  <h2>Remove worker</h2>
+  <span style="color: green"><%= flash[:notice] %>&nbsp;</span>
+  <span style="color: green"><%= flash[:error] %>&nbsp;</span>
+  <% if @worker_group %>
+    <% if @workers.size > 0 %>
+      Please select workers in list
+      <%= form_for :worker_group, :url => "/admin/worker_groups/update/#{@worker_group.id}", :method => "put" do |f| %>
+        <%= select_tag "accounts", options_for_select(@workers.map{|x| [x.name, x.id]}), :multiple => true%>
+        <br/>
+        <input type="hidden" name="action_type" value="remove"/>
+        <%= f.submit "Remove" %>
+      <% end %>
+    <% else %>
+      There are no workers to remove.
+    <% end %>
+  <% end %>
+</div>

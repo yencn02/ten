@@ -1,0 +1,32 @@
+<% content_for :javascript do %>
+  <%= javascript_include_tag "tiny_mce/tiny_mce" %>
+  <%= javascript_include_tag "mce_editor" %>
+  <%= javascript_include_tag "views/client/requests/show" %>
+<% end %>
+<%
+# Specify the suffixes for each message partial used in this page
+message_id_suffixes = {"client_discussion" => "__client", "developer_discussion" => "__developer"}
+file_id_suffixes = {"client_request_file" => "__client_request", "task_file" => "__task"}
+%>
+<div id="client-request-show" >
+  <!-- idSuffixes is used to observe instances of the message partials used in this page -->
+  <div class="grid_16">
+    <input type="hidden" id="idSuffixes"
+           value="<%= array_to_comma_separated_string(message_id_suffixes.values) %>" />
+    <input type="hidden" id="fileIdSuffixes"
+           value="<%= array_to_comma_separated_string(file_id_suffixes.values) %>" />
+    <!-- Show summarized info of the client_request -->
+    <%= render :partial => "client_requests/summary", :locals => {:client_request => @client_request} %>
+    <div class="clear"></div>
+  </div>
+  <div id="right-col" class="grid_8">
+    <%= render :partial => "client/requests/changes",
+      :locals => {:client_request => @client_request, :changes => @client_request_changes, :readonly => @readonly} %>
+    <%= render :partial => "attached_files/files",
+      :locals => { :files => @attached_files, :id_suffix => file_id_suffixes["client_request_file"],
+      :client_request_id => @client_request.id, :task_id => nil, :readonly => @readonly} %>
+  </div>
+  <div id="left-col" class="grid_8">
+    <%= render :partial => "/tasks/client_discussion", :locals => { :messages => @client_msg } %>
+  </div>
+</div>

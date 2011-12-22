@@ -1,0 +1,32 @@
+# YAML Template.
+admin_account:
+  role: admin_role
+  account: admin
+
+manager_account:
+  role: manager_role
+  account: manager
+
+leader_account:
+  role: lead_role
+  account: leader
+
+worker_account_1:
+  role: worker_role
+  account: worker_1
+
+worker_account_2:
+  role: worker_role
+  account: worker_2
+
+client_account_1:
+  role: client_role
+  account: client_1
+
+client_account_2:
+  role: client_role
+  account: client_2
+
+client_account_3:
+  role: client_role
+  account: client_3

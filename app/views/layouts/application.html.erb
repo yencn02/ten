@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <%= render :partial => "layouts/head" %>
+  </head>
+  <body>
+    <div class="container_16">
+      <div class="grid_16" id="header">
+        <h1 id="branding">
+          <img src="/images/endax-logo-on-white.png" alt="logo" /> TEN
+        </h1>
+        <div id="settings">
+          <div style="float: left;">Hello,&nbsp;</div>
+          <div id="account_setting">
+            <td><%= link_to @current_account.name,"/accounts/"+@current_account.id.to_s%></td>
+          </div>|
+          <%= link_to "Log Out", logout_url, :class => "last" %>
+        </div>
+      </div>
+      <div class="clear"></div>
+      
+      <%= render :partial => "layouts/menu" %>
+      <div class="clear"></div>
+
+      <div class="grid_16" id="app-message">
+        <%= render :partial => "layouts/flash", :locals => { :flash => flash } %>
+      </div>
+      <div class="clear"></div>
+      <div id="page-content">
+        <%= yield %>
+      </div>
+
+      <%= render :partial => "layouts/footer" %>
+    </div>    
+  </body>
+</html>

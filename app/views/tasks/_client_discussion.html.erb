@@ -1,0 +1,44 @@
+<div id="client-discussion" class="box">
+  <h2><a href="#" class="visible">client discussion</a></h2>
+  <div id="messages_client" class="message-list">
+    <div  id="client-message-list"> 
+      <% if @client_msg.empty? %>
+        <div class="note">There are no messages.</div>
+      <% else %>
+        <%= render "/tasks/client_messages" %> 
+      <% end %>
+    </div>
+    <div class="clear"></div>
+    <% if roles_write_message(current_account) %>
+      <div class="new">
+        <a class="action" href="#" id="client-discussion-link">New</a>
+      </div>
+      <div class="clear"></div>
+      <div class="form-wrapper" style="display: none;">
+        <%= form_tag( { :controller => "/tasks", :action => :save_message_client }, :remote => true, :complete => "Message.toogle_header();Message.reply();") do %>
+          <fieldset>
+            <div id="newClientMessageError" class="errorExplanation" style="display:none;">
+              <h2>1 error prohibited this client message from being saved</h2>
+              <p>There were problems with the following fields:</p>
+              <ul><li>Description can't be blank</li></ul>
+            </div>
+            <p>
+              <%= label :body, "Message" %>
+              <%= text_area("client_message", "body") %>
+            </p>
+            <p style="display:none;">
+              <%= label :client_request_id, "client_request_id" %>
+              <%= text_field("client_message", "client_request_id", :value => @client_request.nil?  ? @task.client_request_id : @client_request.id) %>
+            </p>
+            <p style="display:none;">
+              <%= label :sender_id, "sender_id" %>
+              <%= text_field("client_message", "sender_id", :value => @current_account.id) %>
+            </p>
+            <%= submit_tag "Create", :class => "register-button" , :onclick => "tinyMCE.triggerSave(true,true);" %>
+            <input id="client-discussion-cancel" type="button" class="register-button" value="Cancel" />
+          </fieldset>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

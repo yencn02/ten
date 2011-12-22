@@ -1,0 +1,29 @@
+<div class="Applet">
+  <h3 class="appletTitle">Files</h3>
+  <div class="floatRight">
+    <a id="showHideFiles" href="#">Show</a>
+  </div>
+  <div id="files" style="display: none;" >
+    <div id="fileList">
+      <%= render :partial => "client_requests/file_list", :locals => {:files => files} %>
+    </div>
+
+    <div style="clear: both">
+    <a id="attachNew" name="attachNew" href="#">Attach new</a><br/>
+    </div>
+    <div id="newFile" style="display: none">
+      <fieldset>
+      <div id="newFileError" style="display: none">&nbsp;</div>
+      <% form_tag "/client_requests/attach_file",
+        :multipart => true, :target => "upload_frame", :id => "newFileForm" do %>
+        <p><%= file_field_tag "attachedFile" %></p>
+        <p><%= label_tag "note" %><br/>
+        <%= text_area_tag "note", nil, :class => "flexibleTextArea", :rows => "5" %></p>
+        <p><%= submit_tag "Save", :id => "save", :name => "save" %></p>
+        <%= hidden_field_tag "rid", client_request.id %>
+      <% end %>
+      </fieldset>
+      <iframe id="upload_frame" name="upload_frame" style="display: none"></iframe>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<!-- Files -->
+<div class="files">
+  <h3>Files</h3>
+  <div class="new">
+    <a id="new-change-file" class="action" href="#">New</a>
+  </div>
+  <div class="clear"></div>
+  <div class="form-wrapper" style="display: none;">
+    <form action="#">
+      <fieldset>        
+        <p>
+          <label>File:</label>
+          <input type="file" size="32" />
+        </p>
+        <p>
+          <label>Description:</label>
+          <textarea cols="40" rows="5"></textarea>
+        </p>
+        <input type="submit" class="register-button" value="Create" />
+        <input type="button" class="register-button" value="Cancel" />
+      </fieldset>
+    </form>
+  </div>
+
+  <% 3.times do %>
+    <div class="note">
+      <div>
+        <h4>screenshot.png</h4>
+        <a href="#">Delete</a>
+      </div>
+      <div class="clear"></div>
+      <div>Converts max to an integer using max1 = max.to_i.abs</div>
+    </div>
+  <% end %>
+
+  <div class="pagination-wrapper">
+    <div class="pagination">
+      <span class="disabled prev_page">« Previous</span>
+      <span class="current">1</span>
+      <a href="#" rel="next">2</a>
+      <a href="#">3</a>
+      <a href="#" class="next_page" rel="next">Next »</a>
+    </div>
+  </div>
+</div>
+
+<!-- End - Files -->

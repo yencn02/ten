@@ -1,0 +1,19 @@
+# Save the new client_request change.
+@client_request_change = ClientRequestChange.new
+@client_request_change.description = params[:description]
+@client_request_change.client_request_id = params[:client_request_id]
+
+# The new client_request change is saved successfully.
+if @client_request_change.save && @client_request_change.errors.empty?
+  # Refresh the list of client_request changes.
+  # Highlight the latest client_request changes.
+
+  page.call "ClientRequestChange.afterSave"
+  @client_request_changes = ClientRequestChange.paginate_by_client_request(@client_request_change.client_request_id, 1)
+  page.replace_html "changeList",
+    :partial => "change_list", :locals => {:changes => @client_request_changes}
+  page.visual_effect :highlight, "change#{@client_request_change.id}", {:duration => 2}
+else
+  # Show error messages.
+  page.replace "newChangeError", (error_messages_for :client_request_change, :id => "newChangeError")
+end

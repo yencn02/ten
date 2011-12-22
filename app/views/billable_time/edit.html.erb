@@ -1,0 +1,27 @@
+<div class="grid_16">
+<h1>Editing billable_times</h1>
+
+<%= form_for(@billable_time) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :task_id %><br />
+    <%= f.text_field :task_id %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :billed_hour %><br />
+    <%= f.text_field :billed_hour %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @billable_time %> |
+<%= link_to 'Back', billable_time_path %>
+
+</div>

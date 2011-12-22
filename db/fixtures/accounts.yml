@@ -1,0 +1,73 @@
+## YAML Template.
+admin:
+  login: admin
+  name: Administrator
+  email: admin@company-name.com
+  # The plain-text password is: 123456
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  enabled: 1
+  type: Worker
+
+manager:
+  login: manager
+  name: Manager
+  email: manager@company-name.com
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  enabled: 1
+  type: Worker
+
+leader:
+  login: leader
+  name: Leader
+  email: leader@company-name.com
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  enabled: 1
+  type: Worker
+
+worker_1:
+  login: worker1
+  name: Worker 1
+  email: worker1@company-name.com
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  enabled: 1
+  type: Worker
+
+worker_2:
+  login: worker2
+  name: Worker 2
+  email: worker2@company-name.com
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  enabled: 1
+  type: Worker
+
+client_1:
+  login: client1
+  name: Client 1
+  email: client1@company-name.com
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  enabled: 1
+  type: Client
+
+client_2:
+  login: client2
+  name: Client 2
+  email: client2@company-name.com
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  enabled: 1
+  type: Client
+
+client_3:
+  login: client3
+  name: Client 3
+  email: client3@company-name.com
+  crypted_password: 00402a54a7267ae88e0f4d6082a153423f72ece3
+  salt: 0346737682e7ae766d9031b07c479cd95e55ec96
+  enabled: 1
+  type: Client

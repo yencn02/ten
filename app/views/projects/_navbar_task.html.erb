@@ -1,0 +1,42 @@
+<div id="projectList">
+  <ul class="nav" id="middle">
+  <% status = ""
+    if params[:project_id].nil?
+      status = "active"
+    end
+  %>
+    <li>
+        <%= link_to "All", "/tasks/list/#{params[:status]}", :class => status %>
+    </li>
+    <li class="paginate_prev">
+      <%= will_paginate projects,
+        :renderer => "RemoteLinkRenderer",
+        :remote => {:update => 'middle'},
+        :page_links => false,
+        :previous_label => "&laquo;",
+        :next_label => "&raquo;",
+        :params => {:controller => :projects, :action => :paginate, :type => "task", :authenticity_token => nil} %>
+    </li>
+    <% for project in projects %>
+      <% status = ""
+      if project.id == params[:project_id].to_i
+        status = "active"
+      end
+    %>
+      <li>
+        <%= link_to project.name, url_for(:controller => :tasks, :action => :list, :status => params[:status], :project_id => project.id), :class => status %>
+      </li>
+    <% end %>
+
+    <li class="paginate_next">
+      <%= will_paginate projects,
+        :renderer => "RemoteLinkRenderer",
+        :remote => {:update => 'middle'},
+        :page_links => false,
+        :previous_label => "&laquo;",
+        :next_label => "&raquo;",
+        :params => {:controller => :projects, :action => :paginate, :type => "task", :authenticity_token => nil} %>
+    </li>
+    <li></li>
+  </ul>
+</div>

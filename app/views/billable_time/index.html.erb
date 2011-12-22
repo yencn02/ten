@@ -1,0 +1,30 @@
+<div class="grid_16">
+<h1>Listing billable_times</h1>
+
+<div class="pagination-wrapper">
+  <%= will_paginate @billable_times if @billable_times.size > 0 %>
+</div>
+<table>
+  <tr>
+    <th>Task ID</th>
+    <th>Description</th>
+    <th>Billed Hours</th>
+    <th>Actions</th>
+  </tr>
+
+<% @billable_times.each do |billable_time| %>
+  <tr>
+    <td><%=h billable_time.task_id %></td>
+    <td><%=h billable_time.description %></td>
+    <td><%=h billable_time.billed_hour %></td>
+    <td><%= link_to 'Show', billable_time %> - <%= link_to 'Edit', edit_billable_time_path(billable_time) %> - <%= link_to 'Destroy', billable_time, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<div class="pagination-wrapper">
+  <%= will_paginate @billable_times if @billable_times.size > 0 %>
+</div>
+
+<%= link_to 'New billable_times', new_billable_time_path %>
+</div>
